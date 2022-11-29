@@ -121,4 +121,9 @@ int main() {
 	Avatar player(team);
 
 	game_input();
+
+
+
+
+	//hello
 }
