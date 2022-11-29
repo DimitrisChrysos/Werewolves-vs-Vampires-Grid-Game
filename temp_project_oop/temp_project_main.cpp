@@ -122,7 +122,6 @@ int main() {
 
 	game_input();
 
-
-
+	;
 
 }
