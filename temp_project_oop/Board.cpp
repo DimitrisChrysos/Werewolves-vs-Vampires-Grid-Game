@@ -6,16 +6,24 @@
 using namespace std;
 
 Board::Board(int k, int l) : x(k), y(l) {
-    int i, j, num;
+    int i, j, num, pot = 0;
     char sym;
     a = new Block * [k];
     srand(time(0));
     for (i = 0; i < k; i++) {
         a[i] = new Block[l];
         for (j = 0; j < l; j++) {
+            if (i == k - 1 && j == l - 1 && pot == 0) {
+                a[i][j].init(i, j, '+');
+                continue;
+            }
             num = 1 + (rand() % 100);
             if (num >= 1 && num <= 8) sym = '*';
             else if (num <= 16) sym = '~';
+            else if (num <= 21 && pot == 0) {
+                pot++;
+                sym = '+';
+            }
             else sym = ' ';
             a[i][j].init(i, j, sym);
         }
