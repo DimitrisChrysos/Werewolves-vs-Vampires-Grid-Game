@@ -15,7 +15,7 @@ Board::Board(int k, int l) : x(k), y(l) {
         for (j = 0; j < l; j++) {
             num = 1 + (rand() % 100);
             if (num >= 1 && num <= 8) sym = '*';
-            else if (num <= 16) sym = '~';
+            else if (num <= 15) sym = '~';
             else sym = ' ';
             a[i][j].init(i, j, sym);
         }
