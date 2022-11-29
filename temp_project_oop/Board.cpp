@@ -24,9 +24,11 @@ Board::Board(int k, int l) : x(k), y(l) {
 
 Board::~Board() {
     int i;
+    cout << "destructor activated\n";
     for (i = 0; i < x; i++)
-        delete a[i];
-    delete a;
+        delete[] a[i];
+    delete[] a;
+    cout << "testtt\n";
 }
 
 int Board::getx() {

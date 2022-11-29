@@ -8,41 +8,57 @@
 
 using namespace std;
 
-int game_input() {
+int game_input(Board games_board) {
+	system("cls");
 	cout << "Pause by pressing [p]" << endl << "Exit by pressing [esc]" << endl;
 	cout << "Move with the arrows or with [w]-[a]-[s]-[d]" << endl;
-	this_thread::sleep_for(2s);
-	cout << "Go!!!\n";
+	cout << "Ready?\n";
+	system("pause");
+
+	
+	system("cls");
+	
+	cout << "1...\n";
+	this_thread::sleep_for(500ms);
+	cout << "2...\n";
+	this_thread::sleep_for(500ms);
+	cout << "3...\n";
+	this_thread::sleep_for(500ms);
+	cout << "Go Go Go!!!\n\n\n";
+	this_thread::sleep_for(1s);
+
+	system("cls");
+	games_board.print();
 
 	//player movement
 	bool exit = false;
 	while (exit == false) {
 
-		// print the new board...
+		// print the new board
 
 		this_thread::sleep_for(50ms);
 		if (GetKeyState(0x57) & 0x8000 || GetKeyState(VK_UP) & 0x8000) {	// to move up
 
 			system("cls");
-			cout << "up!" << endl;
+			games_board.print();
 			continue;
 		}
 		if (GetKeyState(0x53) & 0x8000 || GetKeyState(VK_DOWN) & 0x8000) {	// to move down
 
 			system("cls");
-			cout << "down!" << endl;
+			games_board.print();
 			continue;
 		}
 		if (GetKeyState(0x44) & 0x8000 || GetKeyState(VK_RIGHT) & 0x8000) {	// to move right
 
 			system("cls");
-			cout << "right!" << endl;
+			games_board.print();
 			continue;
 		}
 		if (GetKeyState(0x41) & 0x8000 || GetKeyState(VK_LEFT) & 0x8000) {	// to move left
 
 			system("cls");
-			cout << "left!" << endl;
+			games_board.print();
 			continue;
 		}
 		if (GetKeyState(0x50) & 0x8000) {	// to pause the game
@@ -54,18 +70,17 @@ int game_input() {
 
 			system("pause");
 			system("cls");
-
-			// we need to continue the game...
-
+			games_board.print();
 			continue;
 		}
 		if (GetKeyState(VK_ESCAPE) & 0x8000) {	// to exit the game
 
 			system("cls");
 			cout << "\nThe game has ended\n";
-			return 0;
+			exit = true;
 		}
 	}
+	return 0;
 }
 
 int main() {
@@ -120,8 +135,6 @@ int main() {
 	char team = supporting_team[0];
 	Avatar player(team);
 
-	game_input();
-
-	;
+	game_input(games_board);
 
 }
