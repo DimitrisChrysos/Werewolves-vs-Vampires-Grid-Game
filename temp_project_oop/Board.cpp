@@ -49,7 +49,11 @@ void Board::spawn_entities(Avatar player) {
         int random_x = 1 + (rand() % x);    // x depicts height
         int random_y = 1 + (rand() % y);    // y depicts width
         if (a[random_x][random_y].is_accessible()) {
-            a[random_x][random_y].change_block_id(player.get_team());
+            a[random_x][random_y].change_block_id(player.get_team(), &player);
+            a[random_x][random_y].accessible = false;
+            a[random_x][random_y].x = random_x;
+            a[random_x][random_y].x = random_y;
+            temp = false;
         }
     }
 
