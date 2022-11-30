@@ -32,12 +32,14 @@ class Vampires : public Npc {
 	//movement functs
 public:
 	Vampires();
+    ~Vampires();
 };
 
 class Werewolves : public Npc {
 	//movement functs
 public:
 	Werewolves();
+    ~Werewolves();
 };
 
 

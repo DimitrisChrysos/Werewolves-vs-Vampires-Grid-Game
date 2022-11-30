@@ -29,6 +29,8 @@ Werewolves::Werewolves() {
 	team = 'w';
 }
 
+Werewolves::~Werewolves() {}
+
 Vampires::Vampires() {
 	srand(time(0));
 	health = 3;
@@ -39,3 +41,5 @@ Vampires::Vampires() {
 	x = y = -1;
 	team = 'v';
 }
+
+Vampires::~Vampires() {}

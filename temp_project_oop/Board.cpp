@@ -43,6 +43,37 @@ int Board::gety() {
 void Board::spawn_entities(Avatar player) {
     int wer, vam;
     wer = vam = x * y / 15;
+    for (int i = 0; i < wer; i++) {
+        Werewolves wrwolv;
+        int temp = true;
+        while (temp) {
+            int random_x = 1 + (rand() % x-1);    // x depicts height
+            int random_y = 1 + (rand() % y-1);    // y depicts width
+            if (a[random_x][random_y].is_accessible()) {
+                a[random_x][random_y].change_block_id('w', &wrwolv);
+                a[random_x][random_y].accessible = false;
+                a[random_x][random_y].x = random_x;
+                a[random_x][random_y].x = random_y;
+                temp = false;
+            }
+        }
+    }
+
+    for (int i = 0; i < vam; i++) {
+        Vampires vmpir;
+        int temp = true;
+        while (temp) {
+            int random_x = 1 + (rand() % x - 1);    // x depicts height
+            int random_y = 1 + (rand() % y - 1);    // y depicts width
+            if (a[random_x][random_y].is_accessible()) {
+                a[random_x][random_y].change_block_id('v', &vmpir);
+                a[random_x][random_y].accessible = false;
+                a[random_x][random_y].x = random_x;
+                a[random_x][random_y].x = random_y;
+                temp = false;
+            }
+        }
+    }
 
     int temp = true;
     while (temp) {
