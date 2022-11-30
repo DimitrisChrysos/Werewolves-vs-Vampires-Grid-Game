@@ -41,6 +41,7 @@ int Board::gety() {
 }
 
 void Board::spawn_entities(Avatar player) {
+    srand(time(0));
     int wer, vam;
     wer = vam = x * y / 15;
     for (int i = 0; i < wer; i++) {
@@ -86,10 +87,7 @@ void Board::spawn_entities(Avatar player) {
             a[random_x][random_y].x = random_y;
             temp = false;
         }
-    }
-
-
-    
+    } 
 }
 
 void Board::print() {
