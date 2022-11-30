@@ -10,9 +10,11 @@ public:
 };
 
 class Npc : public Entity {
+protected:
 	int health_potions;
 	int health;
 	int strength;
+	int defense;
 	bool alive;
 public:
 
