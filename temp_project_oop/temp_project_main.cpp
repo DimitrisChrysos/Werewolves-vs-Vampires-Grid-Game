@@ -133,6 +133,7 @@ int main() {
 	Board games_board(x, y);
 	char team = supporting_team[0];
 	Avatar player(team);
+	games_board.spawn_entities(player);
 
 	system("pause");
 	game_input(games_board);
