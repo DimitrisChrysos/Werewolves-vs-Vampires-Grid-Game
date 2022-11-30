@@ -123,5 +123,4 @@ int Block::is_accessible() {
 void Block::change_block_id(char id, Entity* cnt) {
     this->identity = id;
     this->content = cnt;
-
 }
