@@ -2,6 +2,7 @@
 #include "Board.h"
 #include <cstdlib>
 #include <time.h>
+#include "Entity.h"
 
 using namespace std;
 
@@ -30,14 +31,7 @@ Board::Board(int k, int l) : x(k), y(l) {
     }
 }
 
-Board::~Board() {
-    int i;
-    cout << "destructor activated\n";
-    for (i = 0; i < x; i++)
-        delete[] a[i];
-    delete[] a;
-    cout << "testtt\n";
-}
+Board::~Board() {}
 
 int Board::getx() {
     return x;
@@ -57,6 +51,15 @@ void Board::print() {
     }
 }
 
+void Board::delete_game() {
+    int i;
+    cout << "destructor activated\n";
+    for (i = 0; i < y; i++)
+        delete[] a[i];
+    delete[] a;
+    cout << "testtt\n";
+}
+
 void Block::init(int a, int b, char id) {
     x = a; y = b; identity = id;
     if (id == '*' || id == '~') {
@@ -64,4 +67,14 @@ void Block::init(int a, int b, char id) {
     }
     else accessible = true;
     content = NULL;
+}
+
+int Block::is_accessible() {
+    return accessible;
+}
+
+void Block::change_block_id(char id, Entity* cnt) {
+    this->identity = id;
+    this->content = cnt;
+
 }

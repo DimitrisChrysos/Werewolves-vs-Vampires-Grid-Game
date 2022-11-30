@@ -14,6 +14,7 @@ public:
     int getx();
     int gety();
     void print();
+    void delete_game();
 };
 
 class Block {
@@ -25,4 +26,7 @@ private:
     friend class Board;
 public:
     void init(int a, int b, char id);
+    int is_accessible();  // return 1 if true - 0 if not true
+    void change_block_id(char id, Entity* cnt);
+    
 };

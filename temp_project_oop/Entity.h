@@ -1,5 +1,6 @@
 #pragma once
 
+
 class Entity {
 protected:
 	char team;
@@ -19,8 +20,12 @@ public:
 
 class Avatar : public Entity {
 	int magic_potion;
+	int width;
+	int height;
 public:
 	Avatar(char t);
+	~Avatar();
+
 };
 
 class Vampires : public Npc {

@@ -135,6 +135,8 @@ int main() {
 	char team = supporting_team[0];
 	Avatar player(team);
 
+	system("pause");
 	game_input(games_board);
 
+	games_board.delete_game();
 }
