@@ -41,6 +41,12 @@ int Board::gety() {
     return y;
 }
 
+void Board::spawn_entities() {
+    int wer, vam;
+    wer = vam = x * y / 15;
+    
+}
+
 void Board::print() {
     int i, j;
     for (i = 0; i < x; i++) {

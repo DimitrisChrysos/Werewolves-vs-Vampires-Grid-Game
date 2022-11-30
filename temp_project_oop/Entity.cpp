@@ -13,3 +13,6 @@ Avatar::Avatar(char t) {
 
 Avatar::~Avatar() {}
 
+Werewolves::Werewolves() {
+
+}

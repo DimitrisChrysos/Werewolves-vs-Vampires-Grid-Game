@@ -13,6 +13,7 @@ public:
     ~Board();
     int getx();
     int gety();
+    void spawn_entities();
     void print();
     void delete_game();
 };

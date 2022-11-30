@@ -20,8 +20,6 @@ public:
 
 class Avatar : public Entity {
 	int magic_potion;
-	int width;
-	int height;
 public:
 	Avatar(char t);
 	~Avatar();
@@ -31,9 +29,11 @@ public:
 class Vampires : public Npc {
 	//movement functs
 public:
+	Vampires();
 };
 
 class Werewolves : public Npc {
 	//movement functs
 public:
+	Werewolves();
 };
