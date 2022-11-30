@@ -1,8 +1,7 @@
 #include <iostream>
-#include "Entity.h"
-#include "Board.h"
 #include <cstdlib>
 #include <time.h>
+#include "game.h"
 
 void Entity::move(int new_x, int new_y, Entity current_Entity) {
 
@@ -14,6 +13,10 @@ Avatar::Avatar(char t) {
 }
 
 Avatar::~Avatar() {}
+
+char Avatar::get_team() {
+	return this->team;
+}
 
 Werewolves::Werewolves() {
 	srand(time(0));

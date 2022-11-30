@@ -1,8 +1,7 @@
 #include <iostream>
-#include "Board.h"
 #include <cstdlib>
 #include <time.h>
-#include "Entity.h"
+#include "game.h"
 
 using namespace std;
 
@@ -41,9 +40,20 @@ int Board::gety() {
     return y;
 }
 
-void Board::spawn_entities() {
+void Board::spawn_entities(Avatar player) {
     int wer, vam;
     wer = vam = x * y / 15;
+
+    int temp = true;
+    while (temp) {
+        int random_x = 1 + (rand() % x);    // x depicts height
+        int random_y = 1 + (rand() % y);    // y depicts width
+        if (a[random_x][random_y].is_accessible()) {
+            a[random_x][random_y].change_block_id(player.get_team());
+        }
+    }
+
+
     
 }
 
@@ -59,11 +69,9 @@ void Board::print() {
 
 void Board::delete_game() {
     int i;
-    cout << "destructor activated\n";
     for (i = 0; i < y; i++)
         delete[] a[i];
     delete[] a;
-    cout << "testtt\n";
 }
 
 void Block::init(int a, int b, char id) {

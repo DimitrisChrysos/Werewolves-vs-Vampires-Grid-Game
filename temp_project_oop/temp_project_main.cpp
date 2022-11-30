@@ -3,8 +3,7 @@
 #include <thread>
 #include <windows.h>
 
-#include "Board.h"
-#include "Entity.h"
+#include "game.h"
 
 using namespace std;
 
