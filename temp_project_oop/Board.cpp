@@ -124,3 +124,11 @@ void Block::change_block_id(char id, Entity* cnt) {
     this->identity = id;
     this->content = cnt;
 }
+
+Entity* Block::get_ent() {
+    return content;
+}
+
+char Block::get_id() {
+    return identity;
+}

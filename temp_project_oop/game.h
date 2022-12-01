@@ -1,12 +1,14 @@
 #pragma once
 
+class Board;
+class Block;
 
 class Entity {
 protected:
 	char team;
 	int x, y;
 public:
-	void move(int new_x, int new_y, Entity current_Entity);
+	/*virtual*/ void move(int new_x, int new_y, Entity * current_Entity);
 };
 
 class Npc : public Entity {
@@ -17,7 +19,9 @@ protected:
 	int defense;
 	bool alive;
 public:
-
+    /*void move(int new_x, int new_y, Npc* current_Npc);
+    virtual void decide(Board b);
+    virtual void attack(Npc * n, int damage);*/
 };
 
 class Avatar : public Entity {
@@ -33,6 +37,9 @@ class Vampires : public Npc {
 public:
 	Vampires();
     ~Vampires();
+    /*void move(int new_x, int new_y, Vampires* current_Vam);
+    void decide(Board b);
+    void attack(Npc * n, int damage);*/
 };
 
 class Werewolves : public Npc {
@@ -40,10 +47,11 @@ class Werewolves : public Npc {
 public:
 	Werewolves();
     ~Werewolves();
+    /*void move(int new_x, int new_y, Werewolves* current_Wer);
+    void decide(Board b);
+    void attack(Npc* n, int damage);*/
 };
 
-
-class Block;
 
 class Board {
 private:
@@ -70,5 +78,6 @@ public:
     void init(int a, int b, char id);
     int is_accessible();  // return 1 if true - 0 if not true
     void change_block_id(char id, Entity* cnt);
-
+    Entity* get_ent();
+    char get_id();
 };
