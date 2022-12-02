@@ -12,12 +12,16 @@ using namespace std;
 /*void Npc::decide(Board b) {
 	int max_x = b.getx();
 	int max_y = b.gety();
-	int i, mov = 0;
+	int i, mov = 0, num;
 	Entity* temp;
 	Npc* t;
 	Npc* t2;
+	char anti_team;
+	srand(time(0));
+	if (team == 'v') anti_team = 'w';
+	else anti_team = 'v';
 	if (x == 0) {
-		if (b.a[x + 1][y].get_id() == 'w') {
+		if (b.a[x + 1][y].get_id() == team) {
 			temp = b.a[x + 1][y].get_ent();
 			t2 = (Npc*)temp;
 			num = rand();
@@ -27,7 +31,7 @@ using namespace std;
 			}
 		}
 		if (y == 0) {
-			if (b.a[x][y + 1].get_id() == 'w') {
+			if (b.a[x][y + 1].get_id() == team) {
 				temp = b.a[x][y + 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -36,7 +40,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y + 1].get_id() == 'v') {
+			if (b.a[x][y + 1].get_id() == anti_team) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -47,7 +51,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x + 1][y].get_id() == 'v') {
+			else if (b.a[x + 1][y].get_id() == anti_team) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -60,7 +64,7 @@ using namespace std;
 			}
 		}
 		else if (y == max_y - 1) {
-			if (b.a[x][y - 1].get_id() == 'w') {
+			if (b.a[x][y - 1].get_id() == team) {
 				temp = b.a[x][y - 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -69,7 +73,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y - 1].get_id() == 'v') {
+			if (b.a[x][y - 1].get_id() == anti_team) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -80,7 +84,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x + 1][y].get_id() == 'v') {
+			else if (b.a[x + 1][y].get_id() == anti_team) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -93,7 +97,7 @@ using namespace std;
 			}
 		}
 		else {
-			if (b.a[x][y + 1].get_id() == 'w') {
+			if (b.a[x][y + 1].get_id() == team) {
 				temp = b.a[x][y + 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -102,7 +106,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y - 1].get_id() == 'w') {
+			if (b.a[x][y - 1].get_id() == team) {
 				temp = b.a[x][y - 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -111,7 +115,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y + 1].get_id() == 'v') {
+			if (b.a[x][y + 1].get_id() == anti_team) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -126,7 +130,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x + 1][y].get_id() == 'v') {
+			else if (b.a[x + 1][y].get_id() == anti_team) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -141,7 +145,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x][y - 1].get_id() == 'v') {
+			else if (b.a[x][y - 1].get_id() == anti_team) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -159,7 +163,7 @@ using namespace std;
 		}
 	}
 	else if (x == max_x - 1) {
-		if (b.a[x - 1][y].get_id() == 'w') {
+		if (b.a[x - 1][y].get_id() == team) {
 			temp = b.a[x - 1][y].get_ent();
 			t2 = (Npc*)temp;
 			num = rand();
@@ -169,7 +173,7 @@ using namespace std;
 			}
 		}
 		if (y == 0) {
-			if (b.a[x][y + 1].get_id() == 'w') {
+			if (b.a[x][y + 1].get_id() == team) {
 				temp = b.a[x][y + 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -178,7 +182,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y + 1].get_id() == 'v') {
+			if (b.a[x][y + 1].get_id() == anti_team) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -189,7 +193,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x - 1][y].get_id() == 'v') {
+			else if (b.a[x - 1][y].get_id() == anti_team) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -202,7 +206,7 @@ using namespace std;
 			}
 		}
 		else if (y == max_y - 1) {
-			if (b.a[x][y - 1].get_id() == 'w') {
+			if (b.a[x][y - 1].get_id() == team) {
 				temp = b.a[x][y - 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -211,7 +215,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y - 1].get_id() == 'v') {
+			if (b.a[x][y - 1].get_id() == anti_team) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -222,7 +226,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x - 1][y].get_id() == 'v') {
+			else if (b.a[x - 1][y].get_id() == anti_team) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -235,7 +239,7 @@ using namespace std;
 			}
 		}
 		else {
-			if (b.a[x][y + 1].get_id() == 'w') {
+			if (b.a[x][y + 1].get_id() == team) {
 				temp = b.a[x][y + 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -244,7 +248,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y - 1].get_id() == 'w') {
+			if (b.a[x][y - 1].get_id() == team) {
 				temp = b.a[x][y - 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -253,7 +257,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y + 1].get_id() == 'v') {
+			if (b.a[x][y + 1].get_id() == anti_team) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -268,7 +272,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x - 1][y].get_id() == 'v') {
+			else if (b.a[x - 1][y].get_id() == anti_team) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -283,7 +287,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x][y - 1].get_id() == 'v') {
+			else if (b.a[x][y - 1].get_id() == anti_team) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -301,7 +305,7 @@ using namespace std;
 		}
 	}
 	else {
-		if (b.a[x + 1][y].get_id() == 'w') {
+		if (b.a[x + 1][y].get_id() == team) {
 			temp = b.a[x + 1][y].get_ent();
 			t2 = (Npc*)temp;
 			num = rand();
@@ -310,7 +314,7 @@ using namespace std;
 				t2->health++;
 			}
 		}
-		if (b.a[x - 1][y].get_id() == 'w') {
+		if (b.a[x - 1][y].get_id() == team) {
 			temp = b.a[x - 1][y].get_ent();
 			t2 = (Npc*)temp;
 			num = rand();
@@ -320,7 +324,7 @@ using namespace std;
 			}
 		}
 		if (y == 0) {
-			if (b.a[x][y + 1].get_id() == 'w') {
+			if (b.a[x][y + 1].get_id() == team) {
 				temp = b.a[x][y + 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -329,7 +333,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y + 1].get_id() == 'v') {
+			if (b.a[x][y + 1].get_id() == anti_team) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -344,7 +348,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x + 1][y].get_id() == 'v') {
+			else if (b.a[x + 1][y].get_id() == anti_team) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -359,7 +363,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x - 1][y].get_id() == 'v') {
+			else if (b.a[x - 1][y].get_id() == anti_team) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -376,7 +380,7 @@ using namespace std;
 			}
 		}
 		else if (y == max_y - 1) {
-			if (b.a[x][y - 1].get_id() == 'w') {
+			if (b.a[x][y - 1].get_id() == team) {
 				temp = b.a[x][y - 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -385,7 +389,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y - 1].get_id() == 'v') {
+			if (b.a[x][y - 1].get_id() == anti_team) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -400,7 +404,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x + 1][y].get_id() == 'v') {
+			else if (b.a[x + 1][y].get_id() == anti_team) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -415,7 +419,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x - 1][y].get_id() == 'v') {
+			else if (b.a[x - 1][y].get_id() == anti_team) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -432,7 +436,7 @@ using namespace std;
 			}
 		}
 		else {
-			if (b.a[x][y + 1].get_id() == 'w') {
+			if (b.a[x][y + 1].get_id() == team) {
 				temp = b.a[x][y + 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -441,7 +445,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y - 1].get_id() == 'w') {
+			if (b.a[x][y - 1].get_id() == team) {
 				temp = b.a[x][y - 1].get_ent();
 				t2 = (Npc*)temp;
 				num = rand();
@@ -450,7 +454,7 @@ using namespace std;
 					t2->health++;
 				}
 			}
-			if (b.a[x][y + 1].get_id() == 'v') {
+			if (b.a[x][y + 1].get_id() == anti_team) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -469,7 +473,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x + 1][y].get_id() == 'v') {
+			else if (b.a[x + 1][y].get_id() == anti_team) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -488,7 +492,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x][y - 1].get_id() == 'v') {
+			else if (b.a[x][y - 1].get_id() == anti_team) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
@@ -507,7 +511,7 @@ using namespace std;
 					mov = 1;
 				}
 			}
-			else if (b.a[x - 1][y].get_id() == 'v') {
+			else if (b.a[x - 1][y].get_id() == anti_team) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {

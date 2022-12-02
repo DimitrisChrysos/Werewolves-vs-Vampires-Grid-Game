@@ -10,6 +10,10 @@ void Entity::move(int new_x, int new_y, Board b) {
 	b.a[x][y].change_block_id(team, this);
 }
 
+void Npc::attack(Npc* n, int damage) {
+	n->health -= damage; // Some other stuff need to be done here as well
+}
+
 Avatar::Avatar(char t) {
 	this->team = t;
 	magic_potion = 1;

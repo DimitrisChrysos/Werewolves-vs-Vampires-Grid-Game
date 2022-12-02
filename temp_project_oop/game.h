@@ -19,9 +19,9 @@ protected:
 	int defense;
 	bool alive;
 public:
-    /*void decide(Board b);
-    void attack(Npc * n, int damage); */
-    virtual void gen_move(Board b) {};
+    //void decide(Board b);
+    void attack(Npc * n, int damage);
+    //virtual void gen_move(Board b) {}
 };
 
 class Avatar : public Entity {
