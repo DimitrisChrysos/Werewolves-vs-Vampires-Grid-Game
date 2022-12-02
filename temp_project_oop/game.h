@@ -8,7 +8,7 @@ protected:
 	char team;
 	int x, y;
 public:
-	/*virtual*/ void move(int new_x, int new_y, Entity * current_Entity);
+	void move(int new_x, int new_y, Board b);
 };
 
 class Npc : public Entity {
@@ -19,9 +19,9 @@ protected:
 	int defense;
 	bool alive;
 public:
-    /*void move(int new_x, int new_y, Npc* current_Npc);
-    virtual void decide(Board b);
-    virtual void attack(Npc * n, int damage);*/
+    /*void decide(Board b);
+    void attack(Npc * n, int damage); */
+    virtual void gen_move(Board b) {};
 };
 
 class Avatar : public Entity {
@@ -37,9 +37,7 @@ class Vampires : public Npc {
 public:
 	Vampires();
     ~Vampires();
-    /*void move(int new_x, int new_y, Vampires* current_Vam);
-    void decide(Board b);
-    void attack(Npc * n, int damage);*/
+    void gen_move(Board b);
 };
 
 class Werewolves : public Npc {
@@ -47,9 +45,7 @@ class Werewolves : public Npc {
 public:
 	Werewolves();
     ~Werewolves();
-    /*void move(int new_x, int new_y, Werewolves* current_Wer);
-    void decide(Board b);
-    void attack(Npc* n, int damage);*/
+    void gen_move(Board b);
 };
 
 
