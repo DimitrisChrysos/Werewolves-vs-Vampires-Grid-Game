@@ -18,7 +18,25 @@ using namespace std;
 	int num;
 	srand(time(0));
 	if (x == 0) {
+		if (b.a[x + 1][y].get_id() == 'w') {
+			temp = b.a[x + 1][y].get_ent();
+			t2 = (Werewolves*)temp;
+			num = rand();
+			if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+				health_potions--;
+				t2->health++;
+			}
+		}
 		if (y == 0) {
+			if (b.a[x][y + 1].get_id() == 'w') {
+				temp = b.a[x][y + 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
 			if (b.a[x][y + 1].get_id() == 'v') {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Werewolves*)temp;
@@ -27,15 +45,6 @@ using namespace std;
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, this);
-				}
-				else if (b.a[x + 1][y].get_id() == 'w') {
-					temp = b.a[x + 1][y].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
 				}
 			}
 			else if (b.a[x + 1][y].get_id() == 'v') {
@@ -47,33 +56,11 @@ using namespace std;
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, this);
 				}
-				else if (b.a[x][y + 1].get_id() == 'w') {
-					temp = b.a[x][y + 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
 			}
-			else if (b.a[x + 1][y].get_id() == 'w') {
-				temp = b.a[x + 1][y].get_ent();
-				t2 = (Werewolves*)temp;
+			else if (b.a[x + 1][y].is_accessible() && b.a[x][y + 1].is_accessible()) {
 				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
-			}
-			else if (b.a[x][y + 1].get_id() == 'w') {
-				temp = b.a[x][y + 1].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
+				if (num % 2 == 0) this->move(x + 1, y, this);
+				else this->move(x, y + 1, this);
 			}
 			else if (b.a[x + 1][y].is_accessible()) {
 				this->move(x + 1, y, this);
@@ -83,6 +70,15 @@ using namespace std;
 			}
 		}
 		else if (y == max_y - 1) {
+			if (b.a[x][y - 1].get_id() == 'w') {
+				temp = b.a[x][y - 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
 			if (b.a[x][y - 1].get_id() == 'v') {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Werewolves*)temp;
@@ -91,15 +87,6 @@ using namespace std;
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, this);
-				}
-				else if (b.a[x + 1][y].get_id() == 'w') {
-					temp = b.a[x + 1][y].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
 				}
 			}
 			else if (b.a[x + 1][y].get_id() == 'v') {
@@ -110,33 +97,6 @@ using namespace std;
 				}
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, this);
-				}
-				else if (b.a[x][y - 1].get_id() == 'w') {
-					temp = b.a[x][y - 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-			}
-			else if (b.a[x + 1][y].get_id() == 'w') {
-				temp = b.a[x + 1][y].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
-			}
-			else if (b.a[x][y - 1].get_id() == 'w') {
-				temp = b.a[x][y - 1].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
 				}
 			}
 			else if (b.a[x + 1][y].is_accessible()) {
@@ -147,6 +107,24 @@ using namespace std;
 			}
 		}
 		else {
+			if (b.a[x][y + 1].get_id() == 'w') {
+				temp = b.a[x][y + 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
+			if (b.a[x][y - 1].get_id() == 'w') {
+				temp = b.a[x][y - 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
 			if (b.a[x][y + 1].get_id() == 'v') {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Werewolves*)temp;
@@ -158,24 +136,6 @@ using namespace std;
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, this);
-				}
-				else if (b.a[x + 1][y].get_id() == 'w') {
-					temp = b.a[x + 1][y].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-				else if (b.a[x][y - 1].get_id() == 'w') {
-					temp = b.a[x][y - 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
 				}
 			}
 			else if (b.a[x + 1][y].get_id() == 'v') {
@@ -189,24 +149,6 @@ using namespace std;
 				}
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, this);
-				}
-				else if (b.a[x][y + 1].get_id() == 'w') {
-					temp = b.a[x][y + 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-				else if (b.a[x][y - 1].get_id() == 'w') {
-					temp = b.a[x][y - 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
 				}
 			}
 			else if (b.a[x][y - 1].get_id() == 'v') {
@@ -220,51 +162,6 @@ using namespace std;
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, this);
-				}
-				else if (b.a[x + 1][y].get_id() == 'w') {
-					temp = b.a[x + 1][y].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-				else if (b.a[x][y + 1].get_id() == 'w') {
-					temp = b.a[x][y + 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-			}
-			else if (b.a[x + 1][y].get_id() == 'w') {
-				temp = b.a[x + 1][y].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
-			}
-			else if (b.a[x][y - 1].get_id() == 'w') {
-				temp = b.a[x][y - 1].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
-			}
-			else if (b.a[x][y + 1].get_id() == 'w') {
-				temp = b.a[x][y + 1].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
 				}
 			}
 			else if (b.a[x + 1][y].is_accessible()) {
@@ -279,7 +176,25 @@ using namespace std;
 		}
 	}
 	else if (x == max_x - 1) {
+		if (b.a[x - 1][y].get_id() == 'w') {
+			temp = b.a[x - 1][y].get_ent();
+			t2 = (Werewolves*)temp;
+			num = rand();
+			if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+				health_potions--;
+				t2->health++;
+			}
+		}
 		if (y == 0) {
+			if (b.a[x][y + 1].get_id() == 'w') {
+				temp = b.a[x][y + 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
 			if (b.a[x][y + 1].get_id() == 'v') {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Werewolves*)temp;
@@ -288,15 +203,6 @@ using namespace std;
 				}
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, this);
-				}
-				else if (b.a[x - 1][y].get_id() == 'w') {
-					temp = b.a[x - 1][y].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
 				}
 			}
 			else if (b.a[x - 1][y].get_id() == 'v') {
@@ -307,33 +213,6 @@ using namespace std;
 				}
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, this);
-				}
-				else if (b.a[x][y + 1].get_id() == 'w') {
-					temp = b.a[x][y + 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-			}
-			else if (b.a[x - 1][y].get_id() == 'w') {
-				temp = b.a[x - 1][y].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
-			}
-			else if (b.a[x][y + 1].get_id() == 'w') {
-				temp = b.a[x][y + 1].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
 				}
 			}
 			else if (b.a[x - 1][y].is_accessible()) {
@@ -344,6 +223,15 @@ using namespace std;
 			}
 		}
 		else if (y == max_y - 1) {
+			if (b.a[x][y - 1].get_id() == 'w') {
+				temp = b.a[x][y - 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
 			if (b.a[x][y - 1].get_id() == 'v') {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Werewolves*)temp;
@@ -352,15 +240,6 @@ using namespace std;
 				}
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, this);
-				}
-				else if (b.a[x - 1][y].get_id() == 'w') {
-					temp = b.a[x - 1][y].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
 				}
 			}
 			else if (b.a[x - 1][y].get_id() == 'v') {
@@ -372,33 +251,6 @@ using namespace std;
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, this);
 				}
-				else if (b.a[x][y - 1].get_id() == 'w') {
-					temp = b.a[x][y - 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-			}
-			else if (b.a[x - 1][y].get_id() == 'w') {
-				temp = b.a[x - 1][y].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
-			}
-			else if (b.a[x][y - 1].get_id() == 'w') {
-				temp = b.a[x][y - 1].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
 			}
 			else if (b.a[x - 1][y].is_accessible()) {
 				this->move(x - 1, y, this);
@@ -408,6 +260,24 @@ using namespace std;
 			}
 		}
 		else {
+			if (b.a[x][y + 1].get_id() == 'w') {
+				temp = b.a[x][y + 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
+			if (b.a[x][y - 1].get_id() == 'w') {
+				temp = b.a[x][y - 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
 			if (b.a[x][y + 1].get_id() == 'v') {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Werewolves*)temp;
@@ -419,24 +289,6 @@ using namespace std;
 				}
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, this);
-				}
-				else if (b.a[x - 1][y].get_id() == 'w') {
-					temp = b.a[x - 1][y].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-				else if (b.a[x][y - 1].get_id() == 'w') {
-					temp = b.a[x][y - 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
 				}
 			}
 			else if (b.a[x - 1][y].get_id() == 'v') {
@@ -450,24 +302,6 @@ using namespace std;
 				}
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, this);
-				}
-				else if (b.a[x][y + 1].get_id() == 'w') {
-					temp = b.a[x][y + 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-				else if (b.a[x][y - 1].get_id() == 'w') {
-					temp = b.a[x][y - 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
 				}
 			}
 			else if (b.a[x][y - 1].get_id() == 'v') {
@@ -482,51 +316,6 @@ using namespace std;
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, this);
 				}
-				else if (b.a[x - 1][y].get_id() == 'w') {
-					temp = b.a[x - 1][y].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-				else if (b.a[x][y + 1].get_id() == 'w') {
-					temp = b.a[x][y + 1].get_ent();
-					t2 = (Werewolves*)temp;
-					num = rand();
-					if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-						health_potions--;
-						t2->health++;
-					}
-				}
-			}
-			else if (b.a[x - 1][y].get_id() == 'w') {
-				temp = b.a[x - 1][y].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
-			}
-			else if (b.a[x][y - 1].get_id() == 'w') {
-				temp = b.a[x][y - 1].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
-			}
-			else if (b.a[x][y + 1].get_id() == 'w') {
-				temp = b.a[x][y + 1].get_ent();
-				t2 = (Werewolves*)temp;
-				num = rand();
-				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
-					health_potions--;
-					t2->health++;
-				}
 			}
 			else if (b.a[x - 1][y].is_accessible()) {
 				this->move(x - 1, y, this);
@@ -540,5 +329,165 @@ using namespace std;
 		}
 	}
 	else {
-		
+		if (b.a[x + 1][y].get_id() == 'w') {
+			temp = b.a[x + 1][y].get_ent();
+			t2 = (Werewolves*)temp;
+			num = rand();
+			if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+				health_potions--;
+				t2->health++;
+			}
+		}
+		if (b.a[x - 1][y].get_id() == 'w') {
+			temp = b.a[x - 1][y].get_ent();
+			t2 = (Werewolves*)temp;
+			num = rand();
+			if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+				health_potions--;
+				t2->health++;
+			}
+		}
+		if (y == 0) {
+			if (b.a[x][y + 1].get_id() == 'w') {
+				temp = b.a[x][y + 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
+			if (b.a[x][y + 1].get_id() == 'v') {
+				temp = b.a[x][y + 1].get_ent();
+				t = (Werewolves*)temp;
+				if (strength > t->defense) {
+					attack((Npc*)temp, strength-t->defense);
+				}
+				else if (b.a[x + 1][y].is_accessible()) {
+					this->move(x + 1, y, this);
+				}
+			}
+			else if (b.a[x + 1][y].get_id() == 'v') {
+				temp = b.a[x + 1][y].get_ent();
+				t = (Werewolves*)temp;
+				if (strength > t->defense) {
+					attack((Npc*)temp, strength-t->defense);
+				}
+				else if (b.a[x][y + 1].is_accessible()) {
+					this->move(x, y + 1, this);
+				}
+			}
+			else if (b.a[x + 1][y].is_accessible()) {
+				this->move(x + 1, y, this);
+			}
+			else if (b.a[x][y + 1].is_accessible()) {
+				this->move(x, y + 1, this);
+			}
+		}
+		else if (y == max_y - 1) {
+			if (b.a[x][y - 1].get_id() == 'w') {
+				temp = b.a[x][y - 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
+			if (b.a[x][y - 1].get_id() == 'v') {
+				temp = b.a[x][y - 1].get_ent();
+				t = (Werewolves*)temp;
+				if (strength > t->defense) {
+					attack((Npc*)temp, strength-t->defense);
+				}
+				else if (b.a[x + 1][y].is_accessible()) {
+					this->move(x + 1, y, this);
+				}
+			}
+			else if (b.a[x + 1][y].get_id() == 'v') {
+				temp = b.a[x + 1][y].get_ent();
+				t = (Werewolves*)temp;
+				if (strength > t->defense) {
+					attack((Npc*)temp, strength-t->defense);
+				}
+				else if (b.a[x][y - 1].is_accessible()) {
+					this->move(x, y - 1, this);
+				}
+			}
+			else if (b.a[x + 1][y].is_accessible()) {
+				this->move(x + 1, y, this);
+			}
+			else if (b.a[x][y - 1].is_accessible()) {
+				this->move(x, y - 1, this);
+			}
+		}
+		else {
+			if (b.a[x][y + 1].get_id() == 'w') {
+				temp = b.a[x][y + 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
+			if (b.a[x][y - 1].get_id() == 'w') {
+				temp = b.a[x][y - 1].get_ent();
+				t2 = (Werewolves*)temp;
+				num = rand();
+				if (num % 2 == 0 && health_potions > 0 && t2->health < 3) {
+					health_potions--;
+					t2->health++;
+				}
+			}
+			if (b.a[x][y + 1].get_id() == 'v') {
+				temp = b.a[x][y + 1].get_ent();
+				t = (Werewolves*)temp;
+				if (strength > t->defense) {
+					attack((Npc*)temp, strength-t->defense);
+				}
+				else if (b.a[x][y - 1].is_accessible()) {
+					this->move(x, y - 1, this);
+				}
+				else if (b.a[x + 1][y].is_accessible()) {
+					this->move(x + 1, y, this);
+				}
+			}
+			else if (b.a[x + 1][y].get_id() == 'v') {
+				temp = b.a[x + 1][y].get_ent();
+				t = (Werewolves*)temp;
+				if (strength > t->defense) {
+					attack((Npc*)temp, strength-t->defense);
+				}
+				else if (b.a[x][y + 1].is_accessible()) {
+					this->move(x, y + 1, this);
+				}
+				else if (b.a[x][y - 1].is_accessible()) {
+					this->move(x, y - 1, this);
+				}
+			}
+			else if (b.a[x][y - 1].get_id() == 'v') {
+				temp = b.a[x][y - 1].get_ent();
+				t = (Werewolves*)temp;
+				if (strength > t->defense) {
+					attack((Npc*)temp, strength-t->defense);
+				}
+				else if (b.a[x][y + 1].is_accessible()) {
+					this->move(x, y + 1, this);
+				}
+				else if (b.a[x + 1][y].is_accessible()) {
+					this->move(x + 1, y, this);
+				}
+			}
+			else if (b.a[x + 1][y].is_accessible()) {
+				this->move(x + 1, y, this);
+			}
+			else if (b.a[x][y - 1].is_accessible()) {
+				this->move(x, y - 1, this);
+			}
+			else if (b.a[x][y + 1].is_accessible()) {
+				this->move(x, y + 1, this);
+			}
+		}
+	}
 }*/
