@@ -19,9 +19,9 @@ protected:
 	int defense;
 	bool alive;
 public:
-    //void decide(Board b);
+    void decide(Board b);
     void attack(Npc * n, int damage);
-    //virtual void gen_move(Board b) {}
+    virtual void gen_move(Board * b) {}
 };
 
 class Avatar : public Entity {
@@ -37,7 +37,7 @@ class Vampires : public Npc {
 public:
 	Vampires();
     ~Vampires();
-    void gen_move(Board b);
+    void gen_move(Board * b);
 };
 
 class Werewolves : public Npc {
@@ -45,7 +45,7 @@ class Werewolves : public Npc {
 public:
 	Werewolves();
     ~Werewolves();
-    void gen_move(Board b);
+    void gen_move(Board * b);
 };
 
 

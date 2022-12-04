@@ -9,7 +9,7 @@ using namespace std;
 // Because the code is really large and very repetitive, we thought it would be better if those functions were written
 // in a file of their own.
 
-/*void Npc::decide(Board b) {
+void Npc::decide(Board b) {
 	int max_x = b.getx();
 	int max_y = b.gety();
 	int i, mov = 0, num;
@@ -533,6 +533,6 @@ using namespace std;
 		}
 	}
 	if (!mov) {
-		this->gen_move(b);
+		this->gen_move(&b);
 	}
-}*/
+}
