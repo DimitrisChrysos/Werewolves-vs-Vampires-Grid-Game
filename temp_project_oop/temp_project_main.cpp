@@ -40,7 +40,7 @@ int game_input(Board games_board) {
 			move_counter = 0;
 		}
 
-		this_thread::sleep_for(50ms);
+		this_thread::sleep_for(100ms);
 		if (GetKeyState(0x57) & 0x8000 || GetKeyState(VK_UP) & 0x8000) {	// to move up
 
 			system("cls");
@@ -49,7 +49,7 @@ int game_input(Board games_board) {
 			games_board.make_the_moves();
 			continue;
 		}
-		if (GetKeyState(0x53) & 0x8000 || GetKeyState(VK_DOWN) & 0x8000) {	// to move down
+		else if (GetKeyState(0x53) & 0x8000 || GetKeyState(VK_DOWN) & 0x8000) {	// to move down
 
 			system("cls");
 			games_board.print();
@@ -57,7 +57,7 @@ int game_input(Board games_board) {
 			games_board.make_the_moves();
 			continue;
 		}
-		if (GetKeyState(0x44) & 0x8000 || GetKeyState(VK_RIGHT) & 0x8000) {	// to move right
+		else if (GetKeyState(0x44) & 0x8000 || GetKeyState(VK_RIGHT) & 0x8000) {	// to move right
 
 			system("cls");
 			games_board.print();
@@ -65,7 +65,7 @@ int game_input(Board games_board) {
 			games_board.make_the_moves();
 			continue;
 		}
-		if (GetKeyState(0x41) & 0x8000 || GetKeyState(VK_LEFT) & 0x8000) {	// to move left
+		else if (GetKeyState(0x41) & 0x8000 || GetKeyState(VK_LEFT) & 0x8000) {	// to move left
 
 			system("cls");
 			games_board.print();
@@ -115,11 +115,11 @@ int main() {
 		cout << "y: ";
 		cin >> y;
 		try {
-			if (x <= 0) {
+			if (x <= 1) {
 				throw (x);
 				x_or_y = x;
 			}
-			else if (y <= 0) {
+			else if (y <= 1) {
 				throw (y);
 				x_or_y = y;
 			}
