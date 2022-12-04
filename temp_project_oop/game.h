@@ -21,6 +21,7 @@ protected:
 public:
     void decide(Board b);
     void attack(Npc * n, int damage);
+    bool is_alive();
     virtual void gen_move(Board * b) {}
 };
 
@@ -52,6 +53,7 @@ public:
 class Board {
 private:
     int x, y; //size
+    int day_or_night;    // day -> [1] or night -> [2]
 public:
     Block** a;
     Board(int k, int l);
@@ -60,6 +62,9 @@ public:
     int gety();
     void spawn_entities(Avatar player);
     void print();
+    void change_time();
+    int return_time();
+    void make_the_moves();
     void delete_game();
 };
 

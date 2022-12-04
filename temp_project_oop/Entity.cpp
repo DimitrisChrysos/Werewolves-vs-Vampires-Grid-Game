@@ -14,6 +14,10 @@ void Npc::attack(Npc* n, int damage) {
 	n->health -= damage; // Some other stuff need to be done here as well
 }
 
+bool Npc::is_alive() {
+	return this->alive;
+}
+
 Avatar::Avatar(char t) {
 	this->team = t;
 	magic_potion = 1;

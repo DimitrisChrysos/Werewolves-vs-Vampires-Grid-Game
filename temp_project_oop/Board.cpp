@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
+#include <string>
+#include <vector>
 #include "game.h"
 
 using namespace std;
@@ -28,6 +30,9 @@ Board::Board(int k, int l) : x(k), y(l) {
             a[i][j].init(i, j, sym);
         }
     }
+
+    int random = 1 + (rand() % 2);  // to randomly declare if we start at night -> [2] or day -> [1]
+    this->day_or_night = random;
 }
 
 Board::~Board() {}
@@ -98,6 +103,66 @@ void Board::print() {
             cout << a[i][j].identity;
         }
     }
+}
+
+void Board::change_time() {
+    if (this->day_or_night == 1)
+        day_or_night = 2;
+    else
+        day_or_night = 1;
+}
+
+int Board::return_time() {
+    return this->day_or_night;
+}
+
+void Board::make_the_moves() {
+    vector<Npc*> other_team;
+    if (this->day_or_night == 1) {  //day
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                if (a[i][j].identity == 'v') {
+                    Npc* temp;
+                    temp = (Npc*)a[i][j].get_ent();
+                    temp->decide(*this);
+                }
+                else if (a[i][j].identity == 'w') {
+                    Npc* temp;
+                    temp = (Npc*)a[i][j].get_ent();
+                    other_team.push_back(temp);
+                }
+            }
+        }
+        for (auto iterate = other_team.begin(); iterate != other_team.end(); iterate++) {
+            Npc* temp = *iterate;
+            if (temp->is_alive()) {
+                temp->decide(*this);
+            }
+        }
+    }
+    else {                          //night
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                if (a[i][j].identity == 'w') {
+                    Npc* temp;
+                    temp = (Npc*)a[i][j].get_ent();
+                    temp->decide(*this);
+                }
+                else if (a[i][j].identity == 'v') {
+                    Npc* temp;
+                    temp = (Npc*)a[i][j].get_ent();
+                    other_team.push_back(temp);
+                }
+            }
+        }
+        for (auto iterate = other_team.begin(); iterate != other_team.end(); iterate++) {
+            Npc* temp = *iterate;
+            if (temp->is_alive()) {
+                temp->decide(*this);
+            }
+        }
+    }
+    other_team.clear();
 }
 
 void Board::delete_game() {

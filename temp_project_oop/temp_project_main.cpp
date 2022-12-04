@@ -2,7 +2,7 @@
 #include <chrono>
 #include <thread>
 #include <windows.h>
-
+#include <string>
 #include "game.h"
 
 using namespace std;
@@ -30,34 +30,47 @@ int game_input(Board games_board) {
 	games_board.print();
 
 	//player movement
+	int move_counter = 0;
 	bool exit = false;
 	while (exit == false) {
 
-		// print the new board
+		
+		if (move_counter == 8) {
+			games_board.change_time();
+			move_counter = 0;
+		}
 
 		this_thread::sleep_for(50ms);
 		if (GetKeyState(0x57) & 0x8000 || GetKeyState(VK_UP) & 0x8000) {	// to move up
 
 			system("cls");
 			games_board.print();
+			move_counter++;
+			games_board.make_the_moves();
 			continue;
 		}
 		if (GetKeyState(0x53) & 0x8000 || GetKeyState(VK_DOWN) & 0x8000) {	// to move down
 
 			system("cls");
 			games_board.print();
+			move_counter++;
+			games_board.make_the_moves();
 			continue;
 		}
 		if (GetKeyState(0x44) & 0x8000 || GetKeyState(VK_RIGHT) & 0x8000) {	// to move right
 
 			system("cls");
 			games_board.print();
+			move_counter++;
+			games_board.make_the_moves();
 			continue;
 		}
 		if (GetKeyState(0x41) & 0x8000 || GetKeyState(VK_LEFT) & 0x8000) {	// to move left
 
 			system("cls");
 			games_board.print();
+			move_counter++;
+			games_board.make_the_moves();
 			continue;
 		}
 		if (GetKeyState(0x50) & 0x8000) {	// to pause the game
@@ -66,6 +79,12 @@ int game_input(Board games_board) {
 			cout << "The game is paused\n";
 
 			// print number of vampires etc...
+			string current_time;
+			if (games_board.return_time() == 1)		//day
+				current_time = "day";
+			else									//night
+				current_time = "night";
+			cout << "Current time: " << current_time << endl;
 
 			system("pause");
 			system("cls");
