@@ -49,14 +49,16 @@ void Board::spawn_entities(Avatar player) {
     srand(time(0));
     int wer, vam;
     wer = vam = x * y / 15;
+    Vampires* v = new Vampires[vam];
+    Werewolves* w = new Werewolves[wer];
     for (int i = 0; i < wer; i++) {
-        Werewolves wrwolv;
         int temp = true;
         while (temp) {
-            int random_x = 1 + (rand() % x-1);    // x depicts height
-            int random_y = 1 + (rand() % y-1);    // y depicts width
+            int random_x = (rand() % x);    // x depicts height
+            int random_y = (rand() % y);    // y depicts width
             if (a[random_x][random_y].is_accessible()) {
-                a[random_x][random_y].change_block_id('w', &wrwolv);
+                w[i].change_coords(random_x, random_y);
+                a[random_x][random_y].change_block_id('w', &w[i]);
                 a[random_x][random_y].accessible = false;
                 a[random_x][random_y].x = random_x;
                 a[random_x][random_y].x = random_y;
@@ -66,13 +68,13 @@ void Board::spawn_entities(Avatar player) {
     }
 
     for (int i = 0; i < vam; i++) {
-        Vampires vmpir;
         int temp = true;
         while (temp) {
-            int random_x = 1 + (rand() % x - 1);    // x depicts height
-            int random_y = 1 + (rand() % y - 1);    // y depicts width
+            int random_x = (rand() % x);    // x depicts height
+            int random_y = (rand() % y);    // y depicts width
             if (a[random_x][random_y].is_accessible()) {
-                a[random_x][random_y].change_block_id('v', &vmpir);
+                v[i].change_coords(random_x, random_y);
+                a[random_x][random_y].change_block_id('v', &v[i]);
                 a[random_x][random_y].accessible = false;
                 a[random_x][random_y].x = random_x;
                 a[random_x][random_y].x = random_y;
@@ -83,9 +85,10 @@ void Board::spawn_entities(Avatar player) {
 
     int temp = true;
     while (temp) {
-        int random_x = 1 + (rand() % x);    // x depicts height
-        int random_y = 1 + (rand() % y);    // y depicts width
+        int random_x = (rand() % x);    // x depicts height
+        int random_y = (rand() % y);    // y depicts width
         if (a[random_x][random_y].is_accessible()) {
+            player.change_coords(random_x, random_y);
             a[random_x][random_y].change_block_id(player.get_team(), &player);
             a[random_x][random_y].accessible = false;
             a[random_x][random_y].x = random_x;

@@ -534,10 +534,14 @@ void Npc::decide(Board b) {
 	}
 	Werewolves* t4;
 	Vampires* t5;
-	if (team == 'v') {
-		(Vampires*)this;
-	}
 	if (!mov) {
-		this->gen_move(&b);
+		if (team == 'v') {
+			t5 = (Vampires*)this;
+			t5->gen_move(&b);
+		}
+		else {
+			t4 = (Werewolves*)this;
+			t4->gen_move(&b);
+		}
 	}
 }

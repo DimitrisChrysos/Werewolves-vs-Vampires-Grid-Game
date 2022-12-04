@@ -9,6 +9,7 @@ protected:
 	int x, y;
 public:
 	void move(int new_x, int new_y, Board b);
+    void change_coords(int a, int b);
 };
 
 class Npc : public Entity {

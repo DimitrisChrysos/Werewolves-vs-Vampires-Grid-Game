@@ -29,6 +29,17 @@ int game_input(Board games_board) {
 	system("cls");
 	games_board.print();
 
+	int xx = games_board.getx();
+	int yy = games_board.gety();
+	for (int i = 0; i < xx; i++) {
+		for (int j = 0; j < yy; j++) {
+			if (games_board.a[i][j].get_id() == 'v') {
+				Entity* add = games_board.a[i][j].get_ent();
+				cout << add;
+			}
+		}
+	}
+
 	//player movement
 	int move_counter = 0;
 	bool exit = false;
