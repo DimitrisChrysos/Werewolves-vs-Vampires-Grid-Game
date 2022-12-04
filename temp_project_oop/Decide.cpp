@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// This is a file exclusively for the functions decide() of classes Werewolves and Vampires
+// This is a file exclusively for the function decide() of classes Werewolves and Vampires
 // Because the code is really large and very repetitive, we thought it would be better if those functions were written
 // in a file of their own.
 
