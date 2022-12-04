@@ -45,12 +45,10 @@ int Board::gety() {
     return y;
 }
 
-void Board::spawn_entities(Avatar player) {
+void Board::spawn_entities(Avatar player, Vampires * v, Werewolves * w) {
     srand(time(0));
     int wer, vam;
     wer = vam = x * y / 15;
-    Vampires* v = new Vampires[vam];
-    Werewolves* w = new Werewolves[wer];
     for (int i = 0; i < wer; i++) {
         int temp = true;
         while (temp) {
@@ -61,7 +59,7 @@ void Board::spawn_entities(Avatar player) {
                 a[random_x][random_y].change_block_id('w', &w[i]);
                 a[random_x][random_y].accessible = false;
                 a[random_x][random_y].x = random_x;
-                a[random_x][random_y].x = random_y;
+                a[random_x][random_y].y = random_y;
                 temp = false;
             }
         }
@@ -77,7 +75,7 @@ void Board::spawn_entities(Avatar player) {
                 a[random_x][random_y].change_block_id('v', &v[i]);
                 a[random_x][random_y].accessible = false;
                 a[random_x][random_y].x = random_x;
-                a[random_x][random_y].x = random_y;
+                a[random_x][random_y].y = random_y;
                 temp = false;
             }
         }
@@ -92,7 +90,7 @@ void Board::spawn_entities(Avatar player) {
             a[random_x][random_y].change_block_id(player.get_team(), &player);
             a[random_x][random_y].accessible = false;
             a[random_x][random_y].x = random_x;
-            a[random_x][random_y].x = random_y;
+            a[random_x][random_y].y = random_y;
             temp = false;
         }
     } 
@@ -168,8 +166,10 @@ void Board::make_the_moves() {
     other_team.clear();
 }
 
-void Board::delete_game() {
+void Board::delete_game(Vampires * v, Werewolves * w) {
     int i;
+    delete[] v;
+    delete[] w;
     for (i = 0; i < y; i++)
         delete[] a[i];
     delete[] a;
@@ -177,10 +177,10 @@ void Board::delete_game() {
 
 void Block::init(int a, int b, char id) {
     x = a; y = b; identity = id;
-    if (id == '*' || id == '~') {
-        accessible = false;
+    if (id == ' ') {
+        accessible = true;
     }
-    else accessible = true;
+    else accessible = false;
     content = NULL;
 }
 
@@ -191,8 +191,8 @@ int Block::is_accessible() {
 void Block::change_block_id(char id, Entity* cnt) {
     this->identity = id;
     this->content = cnt;
-    if (id == ' ') accessible = 1;
-    else accessible = 0;
+    if (id == ' ') accessible = true;
+    else accessible = false;
 }
 
 Entity* Block::get_ent() {

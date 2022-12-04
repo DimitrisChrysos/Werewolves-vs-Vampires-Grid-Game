@@ -21,7 +21,7 @@ protected:
 	bool alive;
 public:
     void decide(Board b);
-    void attack(Npc * n, int damage);
+    void attack(Npc * n, int damage, Board b);
     bool is_alive();
     virtual void gen_move(Board * b) {}
 };
@@ -61,12 +61,12 @@ public:
     ~Board();
     int getx();
     int gety();
-    void spawn_entities(Avatar player);
+    void spawn_entities(Avatar player, Vampires * v, Werewolves * w);
     void print();
     void change_time();
     int return_time();
     void make_the_moves();
-    void delete_game();
+    void delete_game(Vampires * v, Werewolves * w);
 };
 
 class Block {

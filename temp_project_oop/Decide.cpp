@@ -44,7 +44,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, b);
@@ -55,7 +55,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, b);
@@ -77,7 +77,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, b);
@@ -88,7 +88,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, b);
@@ -119,7 +119,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, b);
@@ -134,7 +134,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, b);
@@ -149,7 +149,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, b);
@@ -186,7 +186,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, b);
@@ -197,7 +197,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, b);
@@ -219,7 +219,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, b);
@@ -230,7 +230,8 @@ void Npc::decide(Board b) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b
+					);
 				}
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, b);
@@ -261,7 +262,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, b);
@@ -276,7 +277,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, b);
@@ -291,7 +292,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, b);
@@ -337,7 +338,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, b);
@@ -352,7 +353,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, b);
@@ -367,7 +368,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, b);
@@ -393,7 +394,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, b);
@@ -408,7 +409,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, b);
@@ -423,7 +424,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, b);
@@ -458,7 +459,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y + 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y - 1].is_accessible()) {
 					this->move(x, y - 1, b);
@@ -477,7 +478,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x + 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, b);
@@ -496,7 +497,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x][y - 1].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x][y + 1].is_accessible()) {
 					this->move(x, y + 1, b);
@@ -515,7 +516,7 @@ void Npc::decide(Board b) {
 				temp = b.a[x - 1][y].get_ent();
 				t = (Npc*)temp;
 				if (strength > t->defense) {
-					attack((Npc*)temp, strength-t->defense);
+					attack((Npc*)temp, strength-t->defense, b);
 				}
 				else if (b.a[x + 1][y].is_accessible()) {
 					this->move(x + 1, y, b);

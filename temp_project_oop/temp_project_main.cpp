@@ -29,17 +29,6 @@ int game_input(Board games_board) {
 	system("cls");
 	games_board.print();
 
-	int xx = games_board.getx();
-	int yy = games_board.gety();
-	for (int i = 0; i < xx; i++) {
-		for (int j = 0; j < yy; j++) {
-			if (games_board.a[i][j].get_id() == 'v') {
-				Entity* add = games_board.a[i][j].get_ent();
-				cout << add;
-			}
-		}
-	}
-
 	//player movement
 	int move_counter = 0;
 	bool exit = false;
@@ -158,15 +147,17 @@ int main() {
 			cout << "Invalid inputs, please insert V or W...\n";
 		}
 	}
-
-	
 	Board games_board(x, y);
 	char team = supporting_team[0];
+	int wer, vam;
+	wer = vam = x * y / 15;
 	Avatar player(team);
-	games_board.spawn_entities(player);
+	Vampires* v = new Vampires[vam];
+	Werewolves* w = new Werewolves[wer];
+	games_board.spawn_entities(player, v, w);
 
 	system("pause");
 	game_input(games_board);
 
-	games_board.delete_game();
+	games_board.delete_game(v, w);
 }

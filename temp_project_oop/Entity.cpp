@@ -15,8 +15,10 @@ void Entity::change_coords(int a, int b) {
 	y = b;
 }
 
-void Npc::attack(Npc* n, int damage) {
+void Npc::attack(Npc* n, int damage, Board b) {
 	n->health -= damage; // Some other stuff need to be done here as well
+	if (!n->health) n->alive = false;
+	b.a[x][y].change_block_id(' ', NULL);
 }
 
 bool Npc::is_alive() {
@@ -102,11 +104,13 @@ void Werewolves::gen_move(Board * b) {
 	for (i = 0; i < 4; i++) {
 		if (pos[i]) count++;
 	}
+	if (!count) return;
 	num = (rand() % count);
 	for (i = 0; i < 4; i++) {
 		if (pos[i]) {
 			if (j == num) {
 				selection = i;
+				break;
 			}
 			else j++;
 		}
@@ -215,11 +219,13 @@ void Vampires::gen_move(Board * b) {
 	for (i = 0; i < 8; i++) {
 		if (pos[i]) count++;
 	}
+	if (!count) return;
 	num = (rand() % count);
 	for (i = 0; i < 8; i++) {
 		if (pos[i]) {
 			if (j == num) {
 				selection = i;
+				break;
 			}
 			else j++;
 		}
