@@ -45,7 +45,7 @@ int Board::gety() {
     return y;
 }
 
-void Board::spawn_entities(Avatar player, Vampires * v, Werewolves * w) {
+void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
     srand(time(0));
     int wer, vam;
     wer = vam = x * y / 15;

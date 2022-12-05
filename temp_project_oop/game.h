@@ -31,6 +31,8 @@ class Avatar : public Entity {
 public:
 	Avatar(char t);
 	~Avatar();
+    int get_x();
+    int get_y();
 	char get_team();
 };
 
@@ -61,7 +63,7 @@ public:
     ~Board();
     int getx();
     int gety();
-    void spawn_entities(Avatar player, Vampires * v, Werewolves * w);
+    void spawn_entities(Avatar &player, Vampires * v, Werewolves * w);
     void print();
     void change_time();
     int return_time();
@@ -78,7 +80,7 @@ private:
     friend class Board;
 public:
     void init(int a, int b, char id);
-    int is_accessible();  // return 1 if true - 0 if not true
+    int is_accessible();  // return true or false
     void change_block_id(char id, Entity* cnt);
     Entity* get_ent();
     char get_id();

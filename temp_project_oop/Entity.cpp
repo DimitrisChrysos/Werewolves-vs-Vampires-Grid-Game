@@ -28,9 +28,18 @@ bool Npc::is_alive() {
 Avatar::Avatar(char t) {
 	this->team = t;
 	magic_potion = 1;
+	x = y = -1;
 }
 
 Avatar::~Avatar() {}
+
+int Avatar::get_x() {
+	return this->x;
+}
+
+int Avatar::get_y() {
+	return this->y;
+}
 
 char Avatar::get_team() {
 	return this->team;

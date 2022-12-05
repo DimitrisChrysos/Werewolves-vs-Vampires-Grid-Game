@@ -27,9 +27,15 @@
     <ClCompile Include="Decide.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game_input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
