@@ -98,11 +98,23 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
 
 void Board::print() {
     int i, j;
+    cout << endl;
+    for (j = 0; j < 2 * y + 1; j++) {
+        cout << "-";
+    }
+    cout << endl;
     for (i = 0; i < x; i++) {
-        cout << endl;
         for (j = 0; j < y; j++) {
-            cout << a[i][j].identity;
+            cout << "|" << a[i][j].identity;
+            if (j == y - 1) {
+                cout << "|";
+            }
         }
+        cout << endl;
+        for (j = 0; j < 2*y + 1; j++) {
+            cout << "-";
+        }
+        cout << endl;
     }
 }
 
