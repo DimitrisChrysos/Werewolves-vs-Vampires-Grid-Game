@@ -45,6 +45,130 @@ char Avatar::get_team() {
 	return this->team;
 }
 
+int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction) {	//direction: "up", "down", "right", "left"
+	int x = player.get_x();
+	int y = player.get_y();
+	int width = b.gety();
+	int height = b.getx();
+
+	// chech if avatar is stuck
+	if (x == 0) {
+		if (y == 0 &&
+			b.a[x + 1][y].is_accessible() == false &&
+			b.a[x][y + 1].is_accessible() == false) {
+
+			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+			return 1;
+		}
+		else if (y == width - 1 &&
+			b.a[x + 1][y].is_accessible() == false &&
+			b.a[x][y - 1].is_accessible() == false) {
+
+			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+			return 1;
+		}
+		else if (b.a[x + 1][y].is_accessible() == false &&
+			b.a[x][y - 1].is_accessible() == false &&
+			b.a[x][y + 1].is_accessible() == false) {
+
+			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+			return 1;
+		}
+	}
+	else if (x == height - 1) {
+		if (y == 0 &&
+			b.a[x - 1][y].is_accessible() == false &&
+			b.a[x][y + 1].is_accessible() == false) {
+
+			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+			return 1;
+		}
+		else if (y == width - 1 &&
+			b.a[x - 1][y].is_accessible() == false &&
+			b.a[x][y - 1].is_accessible() == false) {
+
+			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+			return 1;
+		}
+		else if (b.a[x - 1][y].is_accessible() == false &&
+			b.a[x][y - 1].is_accessible() == false &&
+			b.a[x][y + 1].is_accessible() == false) {
+
+			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+			return 1;
+		}
+	}
+	else if (y == 0 &&
+		b.a[x - 1][y].is_accessible() == false &&
+		b.a[x + 1][y].is_accessible() == false &&
+		b.a[x][y + 1].is_accessible() == false) {
+
+		std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+		return 1;
+	}
+	else if (y == width - 1 &&
+		b.a[x - 1][y].is_accessible() == false &&
+		b.a[x + 1][y].is_accessible() == false &&
+		b.a[x][y - 1].is_accessible() == false) {
+
+		std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+		return 1;
+	}
+	else if (x != 0 && x != width - 1 && y != 0 && y != height - 1 &&
+		b.a[x - 1][y].is_accessible() == false &&
+		b.a[x + 1][y].is_accessible() == false &&
+		b.a[x][y - 1].is_accessible() == false &&
+		b.a[x][y + 1].is_accessible() == false) {
+
+		std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
+		return 1;
+	}
+
+	// make the movement if avatar is not stuck
+	if (direction == "up") {
+		if (x == 0 || b.a[x - 1][y].is_accessible() == false) {
+			std::cout << "Invalid movement, please make another movement...\n";
+			b.print();
+			return 0;
+		}
+		else {
+			player.move(x - 1, y, b);
+		}
+	}
+	else if (direction == "down") {
+		if (x == height - 1 || b.a[x + 1][y].is_accessible() == false) {
+			std::cout << "Invalid movement, please make another movement...\n";
+			b.print();
+			return 0;
+		}
+		else {
+			player.move(x + 1, y, b);
+		}
+	}
+	else if (direction == "right") {
+		if (y == width - 1 || b.a[x][y + 1].is_accessible() == false) {
+			std::cout << "Invalid movement, please make another movement...\n";
+			b.print();
+			return 0;
+		}
+		else {
+			player.move(x, y + 1, b);
+		}
+	}
+	else if (direction == "left") {
+		if (y == 0 || b.a[x][y - 1].is_accessible() == false) {
+			std::cout << "Invalid movement, please make another movement...\n";
+			b.print();
+			return 0;
+		}
+		else {
+			player.move(x, y - 1, b);
+		}
+	}
+	return 1;
+	
+}
+
 Werewolves::Werewolves() {
 	srand(time(0));
 	health = 3;

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Board;
 class Block;
@@ -34,6 +35,7 @@ public:
     int get_x();
     int get_y();
 	char get_team();
+    int make_avatar_movement(Board b, Avatar& player, std::string direction);    //direction: "up", "down", "right", "left"
 };
 
 class Vampires : public Npc {
