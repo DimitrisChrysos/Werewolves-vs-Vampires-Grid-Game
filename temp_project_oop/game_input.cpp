@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w, int number_of_wer_and_vamp) {
+int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w) {
 	system("cls");
 	cout << "Pause by pressing [p]" << endl << "Exit by pressing [esc]" << endl;
 	cout << "Move with the arrows or with [w]-[a]-[s]-[d]" << endl;
@@ -47,7 +47,7 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w, in
 			if (player.make_avatar_movement(games_board, player, "up") == 0)
 				continue;
 			else {
-				games_board.make_entities_movement(v, w, number_of_wer_and_vamp);
+				games_board.make_entities_movement(v, w);
 				move_counter++;
 				games_board.print();
 				continue;
@@ -59,7 +59,7 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w, in
 			if (player.make_avatar_movement(games_board, player, "down") == 0)
 				continue;
 			else {
-				games_board.make_entities_movement(v, w, number_of_wer_and_vamp);
+				games_board.make_entities_movement(v, w);
 				move_counter++;
 				games_board.print();
 				continue;
@@ -71,7 +71,7 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w, in
 			if (player.make_avatar_movement(games_board, player, "right") == 0)
 				continue;
 			else {
-				games_board.make_entities_movement(v, w, number_of_wer_and_vamp);
+				games_board.make_entities_movement(v, w);
 				move_counter++;
 				games_board.print();
 				continue;
@@ -83,7 +83,7 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w, in
 			if (player.make_avatar_movement(games_board, player, "left") == 0)
 				continue;
 			else {
-				games_board.make_entities_movement(v, w, number_of_wer_and_vamp);
+				games_board.make_entities_movement(v, w);
 				move_counter++;
 				games_board.print();
 				continue;
@@ -94,13 +94,14 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w, in
 			system("cls");
 			cout << "The game is paused\n";
 
-			// print number of vampires etc...
+			// print number of vampires and werewolves and the current time
 			string current_time;
 			if (games_board.return_time() == 1)		//day
 				current_time = "day";
 			else									//night
 				current_time = "night";
 			cout << "Current time: " << current_time << endl;
+			cout << "Total number of Werewolves: " <<
 
 			system("pause");
 			system("cls");

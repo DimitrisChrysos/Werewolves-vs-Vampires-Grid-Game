@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Board::Board(int k, int l) : x(k), y(l) {
+Board::Board(int k, int l, int number_of_wer, int number_of_vam) : x(k), y(l) {
     int i, j, num, pot = 0;
     char sym;
     a = new Block * [k];
@@ -33,6 +33,9 @@ Board::Board(int k, int l) : x(k), y(l) {
 
     int random = 1 + (rand() % 2);  // to randomly declare if we start at night -> [2] or day -> [1]
     this->day_or_night = random;
+
+    this->number_of_werewolves = number_of_wer;
+    this->number_of_vampires = number_of_vam;
 }
 
 Board::~Board() {}
@@ -129,21 +132,33 @@ int Board::return_time() {
     return this->day_or_night;
 }
 
-void Board::make_entities_movement(Vampires* v, Werewolves* w, int number_of_wer_and_vamp) {
+void Board::make_entities_movement(Vampires* v, Werewolves* w) {
     if (this->day_or_night == 1) {
-        for (int i = 0; i < number_of_wer_and_vamp; i++) {
-            v[i].decide(*this);
+        for (int i = 0; i < this->number_of_vampires; i++) {
+            if (v[i].is_alive())
+                v[i].decide(*this);
+            else
+                continue;
         }
-        for (int i = 0; i < number_of_wer_and_vamp; i++) {
-            w[i].decide(*this);
+        for (int i = 0; i < this->number_of_werewolves ; i++) {
+            if (w[i].is_alive())
+                w[i].decide(*this);
+            else
+                continue;
         }
     }
     else {
-        for (int i = 0; i < number_of_wer_and_vamp; i++) {
-            w[i].decide(*this);
+        for (int i = 0; i < this->number_of_vampires; i++) {
+            if (w[i].is_alive())
+                w[i].decide(*this);
+            else
+                continue;
         }
-        for (int i = 0; i < number_of_wer_and_vamp; i++) {
-            v[i].decide(*this);
+        for (int i = 0; i < this->number_of_werewolves; i++) {
+            if (v[i].is_alive())
+                v[i].decide(*this);
+            else
+                continue;
         }
     }
 }

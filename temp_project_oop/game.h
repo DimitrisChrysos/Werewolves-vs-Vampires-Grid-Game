@@ -59,9 +59,11 @@ class Board {
 private:
     int x, y; //size
     int day_or_night;    // day -> [1] or night -> [2]
+    int number_of_werewolves;
+    int number_of_vampires;
 public:
     Block** a;
-    Board(int k, int l);
+    Board(int k, int l, int number_of_wer, int number_of_vam);
     ~Board();
     int getx();
     int gety();
@@ -69,7 +71,7 @@ public:
     void print();
     void change_time();
     int return_time();
-    void make_entities_movement(Vampires* v, Werewolves* w, int number_of_wer_and_vamp);
+    void make_entities_movement(Vampires* v, Werewolves* w);
     void delete_game(Vampires * v, Werewolves * w);
 };
 

@@ -54,17 +54,17 @@ int main() {
 			cout << "Invalid inputs, please insert V or W...\n";
 		}
 	}
-	Board games_board(x, y);
 	char team = supporting_team[0];
 	int wer, vam;
 	wer = vam = x * y / 15;
+	Board games_board(x, y, wer, vam);
 	Avatar player(team);
 	Vampires* v = new Vampires[vam];
 	Werewolves* w = new Werewolves[wer];
 	games_board.spawn_entities(player, v, w);
 
 	system("pause");
-	game_input(games_board, player, v, w, wer);
+	game_input(games_board, player, v, w);
 
 	games_board.delete_game(v, w);
 }
