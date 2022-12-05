@@ -34,6 +34,7 @@ public:
 	~Avatar();
     int get_x();
     int get_y();
+    int get_magic_potion();
 	char get_team();
     int make_avatar_movement(Board b, Avatar& player, std::string direction);    //direction: "up", "down", "right", "left"
 };
@@ -71,6 +72,8 @@ public:
     void print();
     void change_time();
     int return_time();
+    int get_number_of_wer();
+    int get_number_of_vam();
     void make_npc_movement(Vampires* v, Werewolves* w);
     void delete_game(Vampires * v, Werewolves * w);
 };

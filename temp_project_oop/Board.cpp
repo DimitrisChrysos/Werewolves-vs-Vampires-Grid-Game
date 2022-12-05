@@ -119,6 +119,14 @@ void Board::print() {
         }
         cout << endl;
     }
+
+    // print current time
+    string current_time;
+    if (this->day_or_night == 1)		//day
+        current_time = "day";
+    else								//night
+        current_time = "night";
+    cout << endl <<"Current time: " << current_time << endl;
 }
 
 void Board::change_time() {
@@ -130,6 +138,14 @@ void Board::change_time() {
 
 int Board::return_time() {
     return this->day_or_night;
+}
+
+int Board::get_number_of_wer() {
+    return this->number_of_werewolves;
+}
+
+int Board::get_number_of_vam() {
+    return this->number_of_vampires;
 }
 
 void Board::make_npc_movement(Vampires* v, Werewolves* w) {

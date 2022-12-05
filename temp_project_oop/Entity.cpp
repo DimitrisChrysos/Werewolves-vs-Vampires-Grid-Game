@@ -41,6 +41,10 @@ int Avatar::get_y() {
 	return this->y;
 }
 
+int Avatar::get_magic_potion() {
+	return this->magic_potion;
+}
+
 char Avatar::get_team() {
 	return this->team;
 }
@@ -127,8 +131,8 @@ int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction)
 	// make the movement if avatar is not stuck
 	if (direction == "up") {
 		if (x == 0 || b.a[x - 1][y].is_accessible() == false) {
-			std::cout << "Invalid movement, please make another movement...\n";
 			b.print();
+			std::cout << std::endl <<"Invalid movement, please make another movement...\n";
 			return 0;
 		}
 		else {
@@ -137,8 +141,8 @@ int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction)
 	}
 	else if (direction == "down") {
 		if (x == height - 1 || b.a[x + 1][y].is_accessible() == false) {
-			std::cout << "Invalid movement, please make another movement...\n";
 			b.print();
+			std::cout << std::endl << "Invalid movement, please make another movement...\n";
 			return 0;
 		}
 		else {
@@ -147,8 +151,8 @@ int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction)
 	}
 	else if (direction == "right") {
 		if (y == width - 1 || b.a[x][y + 1].is_accessible() == false) {
-			std::cout << "Invalid movement, please make another movement...\n";
 			b.print();
+			std::cout << std::endl << "Invalid movement, please make another movement...\n";
 			return 0;
 		}
 		else {
@@ -157,8 +161,8 @@ int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction)
 	}
 	else if (direction == "left") {
 		if (y == 0 || b.a[x][y - 1].is_accessible() == false) {
-			std::cout << "Invalid movement, please make another movement...\n";
 			b.print();
+			std::cout << std::endl << "Invalid movement, please make another movement...\n";
 			return 0;
 		}
 		else {

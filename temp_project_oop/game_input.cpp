@@ -92,16 +92,13 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w) {
 		if (GetKeyState(0x50) & 0x8000) {	// to pause the game
 
 			system("cls");
-			cout << "The game is paused\n";
+			cout << "The game is paused\n\n";
 
-			// print number of vampires and werewolves and the current time
-			string current_time;
-			if (games_board.return_time() == 1)		//day
-				current_time = "day";
-			else									//night
-				current_time = "night";
-			cout << "Current time: " << current_time << endl;
-			cout << "Total number of Werewolves: " <<
+			// print number of active vampires, werewolves and magic potions
+			cout << "Total number of Werewolves: " << games_board.get_number_of_wer() << endl;
+			cout << "Total number of Vampires: " << games_board.get_number_of_vam() << endl;
+			cout << "Total number of Magic Potions: " << player.get_magic_potion() << endl;
+			cout << endl;
 
 			system("pause");
 			system("cls");
