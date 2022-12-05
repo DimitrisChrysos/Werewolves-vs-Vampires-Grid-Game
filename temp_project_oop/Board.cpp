@@ -129,53 +129,23 @@ int Board::return_time() {
     return this->day_or_night;
 }
 
-void Board::make_the_moves() {
-    vector<Npc*> other_team;
-    if (this->day_or_night == 1) {  //day
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                if (a[i][j].identity == 'v') {
-                    Npc* temp;
-                    temp = (Npc*)a[i][j].get_ent();
-                    temp->decide(*this);
-                }
-                else if (a[i][j].identity == 'w') {
-                    Npc* temp;
-                    temp = (Npc*)a[i][j].get_ent();
-                    other_team.push_back(temp);
-                }
-            }
+void Board::make_entities_movement(Vampires* v, Werewolves* w, int number_of_wer_and_vamp) {
+    if (this->day_or_night == 1) {
+        for (int i = 0; i < number_of_wer_and_vamp; i++) {
+            v[i].decide(*this);
         }
-        for (auto iterate = other_team.begin(); iterate != other_team.end(); iterate++) {
-            Npc* temp = *iterate;
-            if (temp->is_alive()) {
-                temp->decide(*this);
-            }
+        for (int i = 0; i < number_of_wer_and_vamp; i++) {
+            w[i].decide(*this);
         }
     }
-    else {                          //night
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                if (a[i][j].identity == 'w') {
-                    Npc* temp;
-                    temp = (Npc*)a[i][j].get_ent();
-                    temp->decide(*this);
-                }
-                else if (a[i][j].identity == 'v') {
-                    Npc* temp;
-                    temp = (Npc*)a[i][j].get_ent();
-                    other_team.push_back(temp);
-                }
-            }
+    else {
+        for (int i = 0; i < number_of_wer_and_vamp; i++) {
+            w[i].decide(*this);
         }
-        for (auto iterate = other_team.begin(); iterate != other_team.end(); iterate++) {
-            Npc* temp = *iterate;
-            if (temp->is_alive()) {
-                temp->decide(*this);
-            }
+        for (int i = 0; i < number_of_wer_and_vamp; i++) {
+            v[i].decide(*this);
         }
     }
-    other_team.clear();
 }
 
 void Board::delete_game(Vampires * v, Werewolves * w) {

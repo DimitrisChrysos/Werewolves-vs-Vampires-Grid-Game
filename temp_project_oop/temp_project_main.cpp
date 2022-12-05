@@ -64,7 +64,7 @@ int main() {
 	games_board.spawn_entities(player, v, w);
 
 	system("pause");
-	game_input(games_board, player);
+	game_input(games_board, player, v, w, wer);
 
 	games_board.delete_game(v, w);
 }

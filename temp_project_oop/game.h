@@ -69,7 +69,7 @@ public:
     void print();
     void change_time();
     int return_time();
-    void make_the_moves();
+    void make_entities_movement(Vampires* v, Werewolves* w, int number_of_wer_and_vamp);
     void delete_game(Vampires * v, Werewolves * w);
 };
 
