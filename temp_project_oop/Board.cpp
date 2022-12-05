@@ -132,33 +132,25 @@ int Board::return_time() {
     return this->day_or_night;
 }
 
-void Board::make_entities_movement(Vampires* v, Werewolves* w) {
+void Board::make_npc_movement(Vampires* v, Werewolves* w) {
     if (this->day_or_night == 1) {
         for (int i = 0; i < this->number_of_vampires; i++) {
             if (v[i].is_alive())
                 v[i].decide(*this);
-            else
-                continue;
         }
         for (int i = 0; i < this->number_of_werewolves ; i++) {
             if (w[i].is_alive())
                 w[i].decide(*this);
-            else
-                continue;
         }
     }
     else {
         for (int i = 0; i < this->number_of_vampires; i++) {
             if (w[i].is_alive())
                 w[i].decide(*this);
-            else
-                continue;
         }
         for (int i = 0; i < this->number_of_werewolves; i++) {
             if (v[i].is_alive())
                 v[i].decide(*this);
-            else
-                continue;
         }
     }
 }

@@ -71,7 +71,7 @@ public:
     void print();
     void change_time();
     int return_time();
-    void make_entities_movement(Vampires* v, Werewolves* w);
+    void make_npc_movement(Vampires* v, Werewolves* w);
     void delete_game(Vampires * v, Werewolves * w);
 };
 

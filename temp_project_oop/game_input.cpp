@@ -47,7 +47,7 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w) {
 			if (player.make_avatar_movement(games_board, player, "up") == 0)
 				continue;
 			else {
-				games_board.make_entities_movement(v, w);
+				games_board.make_npc_movement(v, w);
 				move_counter++;
 				games_board.print();
 				continue;
@@ -59,7 +59,7 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w) {
 			if (player.make_avatar_movement(games_board, player, "down") == 0)
 				continue;
 			else {
-				games_board.make_entities_movement(v, w);
+				games_board.make_npc_movement(v, w);
 				move_counter++;
 				games_board.print();
 				continue;
@@ -71,7 +71,7 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w) {
 			if (player.make_avatar_movement(games_board, player, "right") == 0)
 				continue;
 			else {
-				games_board.make_entities_movement(v, w);
+				games_board.make_npc_movement(v, w);
 				move_counter++;
 				games_board.print();
 				continue;
@@ -83,7 +83,7 @@ int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w) {
 			if (player.make_avatar_movement(games_board, player, "left") == 0)
 				continue;
 			else {
-				games_board.make_entities_movement(v, w);
+				games_board.make_npc_movement(v, w);
 				move_counter++;
 				games_board.print();
 				continue;
