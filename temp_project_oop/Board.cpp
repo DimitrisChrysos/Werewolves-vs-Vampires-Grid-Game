@@ -65,6 +65,7 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
             }
         }
     }
+    w[wer - 1].strength_boost();            // Make at least one werewolf have 3 strength
 
     for (int i = 0; i < vam; i++) {
         int temp = true;
@@ -79,6 +80,7 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
             }
         }
     }
+    v[vam - 1].strength_boost();            // Make at least one vampire have 3 strength
 
     int temp = true;
     while (temp) {

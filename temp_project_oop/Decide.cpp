@@ -107,9 +107,10 @@ void Npc::decide(Board& b) {
 		this->try_heal_or_attack(b, x, y - 1);
 	}
 
+	this->gen_move(&b);
 
 
-	Werewolves* t4;
+	/*Werewolves* t4;
 	Vampires* t5;
 	if (team == 'v') {
 		t5 = (Vampires*)this;
@@ -118,5 +119,5 @@ void Npc::decide(Board& b) {
 	else {
 		t4 = (Werewolves*)this;
 		t4->gen_move(&b);
-	}
+	}*/
 }

@@ -27,6 +27,8 @@ public:
     void attack(Npc * n, int damage, Board &b);
     bool is_alive();
     virtual void gen_move(Board* b);
+    void heal();
+    void strength_boost();
 };
 
 class Avatar : public Entity {
@@ -38,6 +40,7 @@ public:
     int get_y();
     int get_magic_potion();
 	char get_team();
+    void reduce_potions();
     int make_avatar_movement(Board &b, Avatar& player, std::string direction);    //direction: "up", "down", "right", "left"
 };
 

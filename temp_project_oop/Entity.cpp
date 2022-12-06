@@ -35,6 +35,14 @@ bool Npc::is_alive() {
 	return this->alive;
 }
 
+void Npc::heal() {
+	if (alive) health = 3;
+}
+
+void Npc::strength_boost() {
+	strength = 3;
+}
+
 Avatar::Avatar(char t) {
 	this->team = t;
 	magic_potion = 1;
@@ -42,6 +50,10 @@ Avatar::Avatar(char t) {
 }
 
 Avatar::~Avatar() {}
+
+void Avatar::reduce_potions() {
+	magic_potion--;
+}
 
 int Avatar::get_x() {
 	return this->x;

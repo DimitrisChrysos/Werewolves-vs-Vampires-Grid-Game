@@ -11,6 +11,7 @@ int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 	system("cls");
 	cout << "Pause by pressing [p]" << endl << "Exit by pressing [esc]" << endl;
 	cout << "Move with the arrows or with [w]-[a]-[s]-[d]" << endl;
+	cout << "Heal your team with [q]" << endl;
 	cout << "Ready?\n";
 	system("pause");
 
@@ -135,6 +136,23 @@ int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 			system("cls");
 			games_board.print();
 			continue;
+		}
+		if (GetKeyState(0x51) & 0x8000) {	// To heal all friendly entities
+			int max_x = games_board.getx();
+			int max_y = games_board.gety();
+			if (player.get_team() == 'W' && games_board.return_time() == 2 && !player.get_magic_potion()) {
+				for (int i = 0; i < (max_x * max_y / 15); i++) {
+					w[i].heal();
+				}
+				player.reduce_potions();
+			}
+			else if (player.get_team() == 'V' && games_board.return_time() == 1 && !player.get_magic_potion()) {
+				for (int i = 0; i < (max_x * max_y / 15); i++) {
+					v[i].heal();
+				}
+				player.reduce_potions();
+			}
+			else continue;
 		}
 		if (GetKeyState(VK_ESCAPE) & 0x8000) {	// to exit the game
 
