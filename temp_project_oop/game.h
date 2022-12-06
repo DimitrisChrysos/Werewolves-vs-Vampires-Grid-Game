@@ -74,6 +74,7 @@ public:
     int return_time();
     int get_number_of_wer();
     int get_number_of_vam();
+    void reduce_npc(char v_or_w);  //input v or w and it reduces number_of_vampires or number_of_werewolves by 1
     void make_npc_movement(Vampires* v, Werewolves* w);
     void delete_game(Vampires * v, Werewolves * w);
 };
@@ -87,7 +88,8 @@ private:
     friend class Board;
 public:
     void init(int a, int b, char id);
-    int is_accessible();  // return true or false
+    bool is_accessible();  // return true or false
+    bool is_accessible_for_avatar();
     void change_block_id(char id, Entity* cnt);
     Entity* get_ent();
     char get_id();

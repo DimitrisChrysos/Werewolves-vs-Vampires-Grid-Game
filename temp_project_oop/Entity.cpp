@@ -17,7 +17,15 @@ void Entity::change_coords(int a, int b) {
 
 void Npc::attack(Npc* n, int damage, Board b) {
 	n->health -= damage; // Some other stuff need to be done here as well
-	if (!n->health) n->alive = false;
+	if (!n->health) {
+		n->alive = false;
+		if (n->team == 'v') {
+			b.reduce_npc('v');
+		}
+		else if (n->team == 'w') {
+			b.reduce_npc('w');
+		}
+	}
 	b.a[x][y].change_block_id(' ', NULL);
 }
 
@@ -58,22 +66,22 @@ int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction)
 	// chech if avatar is stuck
 	if (x == 0) {
 		if (y == 0 &&
-			b.a[x + 1][y].is_accessible() == false &&
-			b.a[x][y + 1].is_accessible() == false) {
+			b.a[x + 1][y].is_accessible_for_avatar() == false &&
+			b.a[x][y + 1].is_accessible_for_avatar() == false) {
 
 			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 			return 1;
 		}
 		else if (y == width - 1 &&
-			b.a[x + 1][y].is_accessible() == false &&
-			b.a[x][y - 1].is_accessible() == false) {
+			b.a[x + 1][y].is_accessible_for_avatar() == false &&
+			b.a[x][y - 1].is_accessible_for_avatar() == false) {
 
 			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 			return 1;
 		}
-		else if (b.a[x + 1][y].is_accessible() == false &&
-			b.a[x][y - 1].is_accessible() == false &&
-			b.a[x][y + 1].is_accessible() == false) {
+		else if (b.a[x + 1][y].is_accessible_for_avatar() == false &&
+			b.a[x][y - 1].is_accessible_for_avatar() == false &&
+			b.a[x][y + 1].is_accessible_for_avatar() == false) {
 
 			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 			return 1;
@@ -81,48 +89,48 @@ int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction)
 	}
 	else if (x == height - 1) {
 		if (y == 0 &&
-			b.a[x - 1][y].is_accessible() == false &&
-			b.a[x][y + 1].is_accessible() == false) {
+			b.a[x - 1][y].is_accessible_for_avatar() == false &&
+			b.a[x][y + 1].is_accessible_for_avatar() == false) {
 
 			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 			return 1;
 		}
 		else if (y == width - 1 &&
-			b.a[x - 1][y].is_accessible() == false &&
-			b.a[x][y - 1].is_accessible() == false) {
+			b.a[x - 1][y].is_accessible_for_avatar() == false &&
+			b.a[x][y - 1].is_accessible_for_avatar() == false) {
 
 			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 			return 1;
 		}
-		else if (b.a[x - 1][y].is_accessible() == false &&
-			b.a[x][y - 1].is_accessible() == false &&
-			b.a[x][y + 1].is_accessible() == false) {
+		else if (b.a[x - 1][y].is_accessible_for_avatar() == false &&
+			b.a[x][y - 1].is_accessible_for_avatar() == false &&
+			b.a[x][y + 1].is_accessible_for_avatar() == false) {
 
 			std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 			return 1;
 		}
 	}
 	else if (y == 0 &&
-		b.a[x - 1][y].is_accessible() == false &&
-		b.a[x + 1][y].is_accessible() == false &&
-		b.a[x][y + 1].is_accessible() == false) {
+		b.a[x - 1][y].is_accessible_for_avatar() == false &&
+		b.a[x + 1][y].is_accessible_for_avatar() == false &&
+		b.a[x][y + 1].is_accessible_for_avatar() == false) {
 
 		std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 		return 1;
 	}
 	else if (y == width - 1 &&
-		b.a[x - 1][y].is_accessible() == false &&
-		b.a[x + 1][y].is_accessible() == false &&
-		b.a[x][y - 1].is_accessible() == false) {
+		b.a[x - 1][y].is_accessible_for_avatar() == false &&
+		b.a[x + 1][y].is_accessible_for_avatar() == false &&
+		b.a[x][y - 1].is_accessible_for_avatar() == false) {
 
 		std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 		return 1;
 	}
 	else if (x != 0 && x != width - 1 && y != 0 && y != height - 1 &&
-		b.a[x - 1][y].is_accessible() == false &&
-		b.a[x + 1][y].is_accessible() == false &&
-		b.a[x][y - 1].is_accessible() == false &&
-		b.a[x][y + 1].is_accessible() == false) {
+		b.a[x - 1][y].is_accessible_for_avatar() == false &&
+		b.a[x + 1][y].is_accessible_for_avatar() == false &&
+		b.a[x][y - 1].is_accessible_for_avatar() == false &&
+		b.a[x][y + 1].is_accessible_for_avatar() == false) {
 
 		std::cout << "You are stuck, try to move around and wait for your near entities to move...\n";
 		return 1;
@@ -130,42 +138,50 @@ int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction)
 
 	// make the movement if avatar is not stuck
 	if (direction == "up") {
-		if (x == 0 || b.a[x - 1][y].is_accessible() == false) {
+		if (x == 0 || b.a[x - 1][y].is_accessible_for_avatar() == false) {
 			b.print();
 			std::cout << std::endl <<"Invalid movement, please make another movement...\n";
 			return 0;
 		}
 		else {
+			if (b.a[x - 1][y].get_id() == '+')
+				player.magic_potion++;
 			player.move(x - 1, y, b);
 		}
 	}
 	else if (direction == "down") {
-		if (x == height - 1 || b.a[x + 1][y].is_accessible() == false) {
+		if (x == height - 1 || b.a[x + 1][y].is_accessible_for_avatar() == false) {
 			b.print();
 			std::cout << std::endl << "Invalid movement, please make another movement...\n";
 			return 0;
 		}
 		else {
+			if (b.a[x + 1][y].get_id() == '+')
+				player.magic_potion++;
 			player.move(x + 1, y, b);
 		}
 	}
 	else if (direction == "right") {
-		if (y == width - 1 || b.a[x][y + 1].is_accessible() == false) {
+		if (y == width - 1 || b.a[x][y + 1].is_accessible_for_avatar() == false) {
 			b.print();
 			std::cout << std::endl << "Invalid movement, please make another movement...\n";
 			return 0;
 		}
 		else {
+			if (b.a[x][y + 1].get_id() == '+')
+				player.magic_potion++;
 			player.move(x, y + 1, b);
 		}
 	}
 	else if (direction == "left") {
-		if (y == 0 || b.a[x][y - 1].is_accessible() == false) {
+		if (y == 0 || b.a[x][y - 1].is_accessible_for_avatar() == false) {
 			b.print();
 			std::cout << std::endl << "Invalid movement, please make another movement...\n";
 			return 0;
 		}
 		else {
+			if (b.a[x][y - 1].get_id() == '+')
+				player.magic_potion++;
 			player.move(x, y - 1, b);
 		}
 	}

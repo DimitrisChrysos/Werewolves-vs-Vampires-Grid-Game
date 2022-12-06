@@ -148,6 +148,13 @@ int Board::get_number_of_vam() {
     return this->number_of_vampires;
 }
 
+void Board::reduce_npc(char v_or_w) {
+    if (v_or_w == 'v')
+        this->number_of_vampires--;
+    else if (v_or_w == 'w')
+        this->number_of_werewolves--;
+}
+
 void Board::make_npc_movement(Vampires* v, Werewolves* w) {
     if (this->day_or_night == 1) {
         for (int i = 0; i < this->number_of_vampires; i++) {
@@ -189,8 +196,15 @@ void Block::init(int a, int b, char id) {
     content = NULL;
 }
 
-int Block::is_accessible() {
-    return accessible;
+bool Block::is_accessible() {
+    return this->accessible;
+}
+
+bool Block::is_accessible_for_avatar() {
+    if (this->identity == '+')
+        return true;
+    else
+        return this->accessible;
 }
 
 void Block::change_block_id(char id, Entity* cnt) {
