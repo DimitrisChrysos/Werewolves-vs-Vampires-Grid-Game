@@ -9,7 +9,7 @@ using namespace std;
 // Because the code is really large and very repetitive, we thought it would be better if those functions were written
 // in a file of their own.
 
-void Npc::decide(Board b) {
+void Npc::decide(Board &b) {
 	int max_x = b.getx();
 	int max_y = b.gety();
 	int i, mov = 0, num;
@@ -533,7 +533,10 @@ void Npc::decide(Board b) {
 			}
 		}
 	}
-	Werewolves* t4;
+	if (!mov) {
+		this->gen_move(&b);
+	}
+	/*Werewolves* t4;
 	Vampires* t5;
 	if (!mov) {
 		if (team == 'v') {
@@ -544,5 +547,5 @@ void Npc::decide(Board b) {
 			t4 = (Werewolves*)this;
 			t4->gen_move(&b);
 		}
-	}
+	}*/
 }

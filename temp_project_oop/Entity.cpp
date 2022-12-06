@@ -3,7 +3,7 @@
 #include <time.h>
 #include "game.h"
 
-void Entity::move(int new_x, int new_y, Board b) {
+void Entity::move(int new_x, int new_y, Board &b) {
 	b.a[x][y].change_block_id(' ', NULL);
 	x = new_x;
 	y = new_y;
@@ -15,10 +15,15 @@ void Entity::change_coords(int a, int b) {
 	y = b;
 }
 
-void Npc::attack(Npc* n, int damage, Board b) {
+void Npc::gen_move(Board* b) {}
+
+void Npc::attack(Npc* n, int damage, Board &b) {
+	std::cout << "To health prin: " << n->health;
 	n->health -= damage; // Some other stuff need to be done here as well
-	if (!n->health) {
+	std::cout << "To health meta: " << n->health;
+	if (n->health <= 0) {
 		n->alive = false;
+		b.a[n->x][n->y].change_block_id(' ', NULL);
 		if (n->team == 'v') {
 			b.reduce_npc('v');
 		}
@@ -26,7 +31,6 @@ void Npc::attack(Npc* n, int damage, Board b) {
 			b.reduce_npc('w');
 		}
 	}
-	b.a[x][y].change_block_id(' ', NULL);
 }
 
 bool Npc::is_alive() {
@@ -57,7 +61,7 @@ char Avatar::get_team() {
 	return this->team;
 }
 
-int Avatar::make_avatar_movement(Board b, Avatar& player, std::string direction) {	//direction: "up", "down", "right", "left"
+int Avatar::make_avatar_movement(Board &b, Avatar& player, std::string direction) {	//direction: "up", "down", "right", "left"
 	int x = player.get_x();
 	int y = player.get_y();
 	int width = b.gety();

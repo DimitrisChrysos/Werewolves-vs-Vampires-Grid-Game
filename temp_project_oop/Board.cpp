@@ -16,7 +16,7 @@ Board::Board(int k, int l, int number_of_wer, int number_of_vam) : x(k), y(l) {
         a[i] = new Block[l];
         for (j = 0; j < l; j++) {
             if (i == k - 1 && j == l - 1 && pot == 0) {
-                a[i][j].init(i, j, '+');
+                a[i][j].init('+');
                 continue;
             }
             num = 1 + (rand() % 100);
@@ -27,7 +27,7 @@ Board::Board(int k, int l, int number_of_wer, int number_of_vam) : x(k), y(l) {
                 sym = '+';
             }
             else sym = ' ';
-            a[i][j].init(i, j, sym);
+            a[i][j].init(sym);
         }
     }
 
@@ -61,8 +61,6 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
                 w[i].change_coords(random_x, random_y);
                 a[random_x][random_y].change_block_id('w', &w[i]);
                 a[random_x][random_y].accessible = false;
-                a[random_x][random_y].x = random_x;
-                a[random_x][random_y].y = random_y;
                 temp = false;
             }
         }
@@ -77,8 +75,6 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
                 v[i].change_coords(random_x, random_y);
                 a[random_x][random_y].change_block_id('v', &v[i]);
                 a[random_x][random_y].accessible = false;
-                a[random_x][random_y].x = random_x;
-                a[random_x][random_y].y = random_y;
                 temp = false;
             }
         }
@@ -92,8 +88,6 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
             player.change_coords(random_x, random_y);
             a[random_x][random_y].change_block_id(player.get_team(), &player);
             a[random_x][random_y].accessible = false;
-            a[random_x][random_y].x = random_x;
-            a[random_x][random_y].y = random_y;
             temp = false;
         }
     } 
@@ -127,6 +121,15 @@ void Board::print() {
     else								//night
         current_time = "night";
     cout << endl <<"Current time: " << current_time << endl;
+    for (i = 0; i < x; i++) {
+        for (j = 0; j < y; j++) {
+            cout << i << " " << j << " " << a[i][j].get_id();
+            if (a[i][j].get_ent() == NULL) {
+                cout << " NULL\n";
+            }
+            else cout << " ENT\n";
+        }
+    }
 }
 
 void Board::change_time() {
@@ -187,8 +190,8 @@ void Board::delete_game(Vampires * v, Werewolves * w) {
     delete[] a;
 }
 
-void Block::init(int a, int b, char id) {
-    x = a; y = b; identity = id;
+void Block::init(char id) {
+    identity = id;
     if (id == ' ') {
         accessible = true;
     }

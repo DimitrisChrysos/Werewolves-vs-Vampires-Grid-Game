@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int game_input(Board games_board, Avatar &player, Vampires* v, Werewolves* w) {
+int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 	system("cls");
 	cout << "Pause by pressing [p]" << endl << "Exit by pressing [esc]" << endl;
 	cout << "Move with the arrows or with [w]-[a]-[s]-[d]" << endl;

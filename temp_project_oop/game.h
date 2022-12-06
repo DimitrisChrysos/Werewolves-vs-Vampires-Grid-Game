@@ -9,7 +9,7 @@ protected:
 	char team;
 	int x, y;
 public:
-	void move(int new_x, int new_y, Board b);
+	void move(int new_x, int new_y, Board &b);
     void change_coords(int a, int b);
 };
 
@@ -21,10 +21,10 @@ protected:
 	int defense;
 	bool alive;
 public:
-    void decide(Board b);
-    void attack(Npc * n, int damage, Board b);
+    void decide(Board &b);
+    void attack(Npc * n, int damage, Board &b);
     bool is_alive();
-    virtual void gen_move(Board * b) {}
+    virtual void gen_move(Board* b);
 };
 
 class Avatar : public Entity {
@@ -36,7 +36,7 @@ public:
     int get_y();
     int get_magic_potion();
 	char get_team();
-    int make_avatar_movement(Board b, Avatar& player, std::string direction);    //direction: "up", "down", "right", "left"
+    int make_avatar_movement(Board &b, Avatar& player, std::string direction);    //direction: "up", "down", "right", "left"
 };
 
 class Vampires : public Npc {
@@ -81,13 +81,12 @@ public:
 
 class Block {
 private:
-    int x, y;  //coords
     char identity;
     bool accessible;
     Entity* content;
     friend class Board;
 public:
-    void init(int a, int b, char id);
+    void init(char id);
     bool is_accessible();  // return true or false
     bool is_accessible_for_avatar();
     void change_block_id(char id, Entity* cnt);
