@@ -95,6 +95,23 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
 
 void Board::print() {
     int i, j;
+    
+    
+    //// help_print
+    //// from hereeeee
+    //for (i = 0; i < x; i++) {
+    //    for (j = 0; j < y; j++) {
+    //        cout << i << " " << j << " " << a[i][j].get_id();
+    //        Npc *temp = (Npc*)a[i][j].get_ent();
+    //        if (a[i][j].get_ent() == NULL) {
+    //            cout << " NULL\n";
+    //        }
+    //        else cout << " ENT" << "alive->" << temp->is_alive() << endl;
+    //    }
+    //}
+    //// to hereeeeee -> need delete later
+
+
     cout << endl;
     for (j = 0; j < 2 * y + 1; j++) {
         cout << "-";
@@ -121,15 +138,7 @@ void Board::print() {
     else								//night
         current_time = "night";
     cout << endl <<"Current time: " << current_time << endl;
-    for (i = 0; i < x; i++) {
-        for (j = 0; j < y; j++) {
-            cout << i << " " << j << " " << a[i][j].get_id();
-            if (a[i][j].get_ent() == NULL) {
-                cout << " NULL\n";
-            }
-            else cout << " ENT\n";
-        }
-    }
+
 }
 
 void Board::change_time() {

@@ -36,13 +36,13 @@ int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 
 		// ends the game
 		if (games_board.get_number_of_vam() == 0) {
-			if (player.get_team() == 'w') {
+			if (player.get_team() == 'W') {
 				cout << "\n\nCongratulations your team won! There are no Vampires left!\n\n";
 				cout << "The game has ended\n";
 				exit = true;
 				continue;
 			}
-			else if (player.get_team() == 'v') {
+			else if (player.get_team() == 'V') {
 				cout << "\n\nUnfortunately your team lost. Better luck next time! There are no Vampires left!\n\n";
 				cout << "The game has ended\n";
 				exit = true;
@@ -50,13 +50,13 @@ int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 			}
 		}
 		else if (games_board.get_number_of_wer() == 0) {
-			if (player.get_team() == 'v') {
+			if (player.get_team() == 'V') {
 				cout << "\n\nCongratulations your team won! There are no Werewolves left!\n\n";
 				cout << "The game has ended\n";
 				exit = true;
 				continue;
 			}
-			else if (player.get_team() == 'w') {
+			else if (player.get_team() == 'W') {
 				cout << "\n\nUnfortunately your team lost. Better luck next time! There are no Werewolves left!\n\n";
 				cout << "The game has ended\n";
 				exit = true;

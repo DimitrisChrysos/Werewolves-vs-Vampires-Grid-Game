@@ -18,9 +18,7 @@ void Entity::change_coords(int a, int b) {
 void Npc::gen_move(Board* b) {}
 
 void Npc::attack(Npc* n, int damage, Board &b) {
-	std::cout << "To health prin: " << n->health;
 	n->health -= damage; // Some other stuff need to be done here as well
-	std::cout << "To health meta: " << n->health;
 	if (n->health <= 0) {
 		n->alive = false;
 		b.a[n->x][n->y].change_block_id(' ', NULL);
@@ -369,8 +367,8 @@ void Vampires::gen_move(Board * b) {
 			if (b->a[x][y - 1].is_accessible()) pos[3] = true;
 			if (b->a[x - 1][y + 1].is_accessible()) pos[4] = true;
 			if (b->a[x - 1][y - 1].is_accessible()) pos[5] = true;
-			if (b->a[x - 1][y + 1].is_accessible()) pos[6] = true;
-			if (b->a[x + 1][y + 1].is_accessible()) pos[7] = true;
+			if (b->a[x + 1][y + 1].is_accessible()) pos[6] = true;
+			if (b->a[x + 1][y - 1].is_accessible()) pos[7] = true;
 		}
 	}
 	for (i = 0; i < 8; i++) {
