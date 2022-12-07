@@ -73,10 +73,6 @@ void Npc::try_heal_or_attack(Board &b, int x, int y, char code, int &mov) {
 	}
 }
 
-void Npc::avoid(Board& b) {
-
-}
-
 void Npc::decide(Board& b) {
 	int height = b.getx() - 1; //start from 0
 	int width = b.gety() - 1; //start from 0

@@ -22,7 +22,6 @@ protected:
 	bool alive;
 public:
     void try_heal_or_attack(Board& b, int x, int y, char code, int &mov);
-    void avoid(Board& b);
     void decide(Board &b);
     void attack(Npc * n, int damage, Board &b);
     bool is_alive();
