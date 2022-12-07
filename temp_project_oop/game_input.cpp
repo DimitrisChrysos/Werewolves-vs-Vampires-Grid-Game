@@ -140,17 +140,26 @@ int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 		if (GetKeyState(0x51) & 0x8000) {	// To heal all friendly entities
 			int max_x = games_board.getx();
 			int max_y = games_board.gety();
-			if (player.get_team() == 'W' && games_board.return_time() == 2 && !player.get_magic_potion()) {
+			if (player.get_team() == 'W' && games_board.return_time() == 2 && player.get_magic_potion()) {
 				for (int i = 0; i < (max_x * max_y / 15); i++) {
 					w[i].heal();
 				}
+				cout << "Your team is healed!\n";
 				player.reduce_potions();
 			}
-			else if (player.get_team() == 'V' && games_board.return_time() == 1 && !player.get_magic_potion()) {
+			else if (player.get_team() == 'V' && games_board.return_time() == 1 && player.get_magic_potion()) {
 				for (int i = 0; i < (max_x * max_y / 15); i++) {
 					v[i].heal();
 				}
+				cout << "Your team is healed!\n";
 				player.reduce_potions();
+			}
+			else if (!player.get_magic_potion()) {
+				cout << "You have no magic potions left.\n";
+			}
+			else if ((player.get_team() == 'V' && games_board.return_time() == 2) ||
+				(player.get_team() == 'W' && games_board.return_time() == 1)) {
+				cout << "Wrong time for healing. Try again later.\n";
 			}
 			else continue;
 		}
