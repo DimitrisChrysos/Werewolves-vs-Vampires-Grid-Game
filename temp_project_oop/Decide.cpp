@@ -44,7 +44,7 @@ void Npc::try_heal_or_attack(Board &b, int x, int y, char code, int &mov) {
 		if (this->strength > temp_npc->defense) {
 			this->attack(temp_npc, this->strength - temp_npc->defense, b);
 		}
-		else if (temp_npc->strength > this->defense) {
+		else if (temp_npc->strength > this->defense && !mov) {
 			if (code == 'u') {
 				if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, b);
