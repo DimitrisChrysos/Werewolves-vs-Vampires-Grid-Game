@@ -18,15 +18,17 @@ void Entity::change_coords(int a, int b) {
 void Npc::gen_move(Board* b) {}
 
 void Npc::attack(Npc* n, int damage, Board &b) {
-	n->health -= damage; // Some other stuff need to be done here as well
-	if (n->health <= 0) {
-		n->alive = false;
-		b.a[n->x][n->y].change_block_id(' ', NULL);
-		if (n->team == 'v') {
-			b.reduce_npc('v');
-		}
-		else if (n->team == 'w') {
-			b.reduce_npc('w');
+	if (damage > 0) {
+		n->health -= damage; // Some other stuff need to be done here as well
+		if (n->health <= 0) {
+			n->alive = false;
+			b.a[n->x][n->y].change_block_id(' ', NULL);
+			if (n->team == 'v') {
+				b.reduce_npc('v');
+			}
+			else if (n->team == 'w') {
+				b.reduce_npc('w');
+			}
 		}
 	}
 }

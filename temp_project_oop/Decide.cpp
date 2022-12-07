@@ -41,7 +41,7 @@ void Npc::heal_attack_avoid(Board &b, int x, int y, char code, int &mov) {
 		}
 	}
 	else if (anti_team == b.a[x][y].get_id()) {
-		if (this->strength > temp_npc->defense) {
+		if (this->strength >= temp_npc->strength) {
 			this->attack(temp_npc, this->strength - temp_npc->defense, b);
 		}
 		else if (temp_npc->strength > this->defense && !mov) {
