@@ -11,7 +11,7 @@ using namespace std;
 
 
 
-void Npc::try_heal_or_attack(Board &b, int x, int y, char code, int &mov) {
+void Npc::heal_attack_avoid(Board &b, int x, int y, char code, int &mov) {
 	char anti_team;
 	if (this->team == 'v')
 		anti_team = 'w';
@@ -81,62 +81,51 @@ void Npc::decide(Board& b) {
 
 	if (this->x == 0) {
 		if (this->y == 0) {
-			this->try_heal_or_attack(b, x + 1, y, 'r', mov);
-			this->try_heal_or_attack(b, x, y + 1, 'd', mov);
+			this->heal_attack_avoid(b, x + 1, y, 'r', mov);
+			this->heal_attack_avoid(b, x, y + 1, 'd', mov);
 		}
 		else if (this->y == width) {
-			this->try_heal_or_attack(b, x + 1, y, 'l', mov);
-			this->try_heal_or_attack(b, x, y - 1, 'd', mov);
+			this->heal_attack_avoid(b, x + 1, y, 'l', mov);
+			this->heal_attack_avoid(b, x, y - 1, 'd', mov);
 		}
 		else {
-			this->try_heal_or_attack(b, x + 1, y, ' ', mov);
-			this->try_heal_or_attack(b, x, y + 1, 'l', mov);
-			this->try_heal_or_attack(b, x, y - 1, 'r', mov);
+			this->heal_attack_avoid(b, x + 1, y, ' ', mov);
+			this->heal_attack_avoid(b, x, y + 1, 'l', mov);
+			this->heal_attack_avoid(b, x, y - 1, 'r', mov);
 		}
 	}
 	else if (this->x == height) {
 		if (this->y == 0) {
-			this->try_heal_or_attack(b, x - 1, y, 'r', mov);
-			this->try_heal_or_attack(b, x, y + 1, 'u', mov);
+			this->heal_attack_avoid(b, x - 1, y, 'r', mov);
+			this->heal_attack_avoid(b, x, y + 1, 'u', mov);
 		}
 		else if (this->y == width) {
-			this->try_heal_or_attack(b, x - 1, y, 'l', mov);
-			this->try_heal_or_attack(b, x, y - 1, 'u', mov);
+			this->heal_attack_avoid(b, x - 1, y, 'l', mov);
+			this->heal_attack_avoid(b, x, y - 1, 'u', mov);
 		}
 		else {
-			this->try_heal_or_attack(b, x - 1, y, ' ', mov);
-			this->try_heal_or_attack(b, x, y + 1, 'l', mov);
-			this->try_heal_or_attack(b, x, y - 1, 'r', mov);
+			this->heal_attack_avoid(b, x - 1, y, ' ', mov);
+			this->heal_attack_avoid(b, x, y + 1, 'l', mov);
+			this->heal_attack_avoid(b, x, y - 1, 'r', mov);
 		}
 	}
 	else if (this->y == 0) {
-		this->try_heal_or_attack(b, x + 1, y, 'u', mov);
-		this->try_heal_or_attack(b, x - 1, y, 'd', mov);
-		this->try_heal_or_attack(b, x, y + 1, ' ', mov);
+		this->heal_attack_avoid(b, x + 1, y, 'u', mov);
+		this->heal_attack_avoid(b, x - 1, y, 'd', mov);
+		this->heal_attack_avoid(b, x, y + 1, ' ', mov);
 	}
 	else if (this->y == width) {
-		this->try_heal_or_attack(b, x + 1, y, 'u', mov);
-		this->try_heal_or_attack(b, x - 1, y, 'd', mov);
-		this->try_heal_or_attack(b, x, y - 1, ' ', mov);
+		this->heal_attack_avoid(b, x + 1, y, 'u', mov);
+		this->heal_attack_avoid(b, x - 1, y, 'd', mov);
+		this->heal_attack_avoid(b, x, y - 1, ' ', mov);
 	}
 	else if (this->x != 0 && this->x != height && this->y != 0 && this->y != width) {
-		this->try_heal_or_attack(b, x + 1, y, 'u', mov);
-		this->try_heal_or_attack(b, x - 1, y, 'd', mov);
-		this->try_heal_or_attack(b, x, y + 1, 'l', mov);
-		this->try_heal_or_attack(b, x, y - 1, 'r', mov);
+		this->heal_attack_avoid(b, x + 1, y, 'u', mov);
+		this->heal_attack_avoid(b, x - 1, y, 'd', mov);
+		this->heal_attack_avoid(b, x, y + 1, 'l', mov);
+		this->heal_attack_avoid(b, x, y - 1, 'r', mov);
 	}
 
 	if (!mov)
 		this->gen_move(&b);
-
-	/*Werewolves* t4;
-	Vampires* t5;
-	if (team == 'v') {
-		t5 = (Vampires*)this;
-		t5->gen_move(&b);
-	}
-	else {
-		t4 = (Werewolves*)this;
-		t4->gen_move(&b);
-	}*/
 }
