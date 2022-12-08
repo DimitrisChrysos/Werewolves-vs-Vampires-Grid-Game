@@ -54,17 +54,30 @@ int main() {
 			cout << "Invalid inputs, please insert V or W...\n";
 		}
 	}
+
+	temp = true;
 	char team = supporting_team[0];
 	int wer, vam;
 	wer = vam = x * y / 15;
-	Board games_board(x, y, wer, vam);
-	Avatar player(team);
-	Vampires* v = new Vampires[vam];
-	Werewolves* w = new Werewolves[wer];
-	games_board.spawn_entities(player, v, w);
+	while (temp) {								// this while loop is used to avoid the case of the player being stuck
+		Board games_board(x, y, wer, vam);		// by trees and water by all directions when spawned 
+		Avatar player(team);
+		Vampires* v = new Vampires[vam];
+		Werewolves* w = new Werewolves[wer];
+		games_board.spawn_entities(player, v, w);
 
-	system("pause");
-	game_input(games_board, player, v, w);
-
-	games_board.delete_game(v, w);
+		if (check_player_really_stuck(games_board, player) == true) {
+			cout << "hello\n";
+			games_board.delete_game(v, w);
+			continue;
+		}
+		else {
+			//cout << "hello\n";
+			system("pause");
+			game_input(games_board, player, v, w);
+			games_board.delete_game(v, w);
+			temp = false;
+			continue;
+		}
+	}
 }

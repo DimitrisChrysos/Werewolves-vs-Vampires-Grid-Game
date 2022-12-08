@@ -7,6 +7,87 @@
 
 using namespace std;
 
+bool check_player_really_stuck(Board& games_board, Avatar& player) {
+	int x = player.get_x();
+	int y = player.get_y();
+	int height = games_board.getx() - 1; //start from 0
+	int width = games_board.gety() - 1; //start from 0
+	if (x == 0) {
+		if (y == 0) {
+			if (games_board.a[x + 1][y].is_accessible_for_avatar() == false &&
+				games_board.a[x][y + 1].is_accessible_for_avatar() == false) {
+
+				return true;
+			}
+		}
+		else if (y == width) {
+			if (games_board.a[x + 1][y].is_accessible_for_avatar() == false &&
+				games_board.a[x][y - 1].is_accessible_for_avatar() == false) {
+
+				return true;
+			}
+		}
+		else {
+			if (games_board.a[x + 1][y].is_accessible_for_avatar() == false &&
+				games_board.a[x][y + 1].is_accessible_for_avatar() == false &&
+				games_board.a[x][y - 1].is_accessible_for_avatar() == false) {
+
+				return true;
+			}
+		}
+	}
+	else if (x == height) {
+		if (y == 0) {
+			if (games_board.a[x - 1][y].is_accessible_for_avatar() == false &&
+				games_board.a[x][y + 1].is_accessible_for_avatar() == false) {
+
+				return true;
+			}
+		}
+		else if (y == width) {
+			if (games_board.a[x - 1][y].is_accessible_for_avatar() == false &&
+				games_board.a[x][y - 1].is_accessible_for_avatar() == false) {
+
+				return true;
+			}
+		}
+		else {
+			if (games_board.a[x - 1][y].is_accessible_for_avatar() == false &&
+				games_board.a[x][y + 1].is_accessible_for_avatar() == false &&
+				games_board.a[x][y - 1].is_accessible_for_avatar() == false) {
+
+				return true;
+			}
+		}
+	}
+	else if (y == 0) {
+		if (games_board.a[x + 1][y].is_accessible_for_avatar() == false &&
+			games_board.a[x - 1][y].is_accessible_for_avatar() == false &&
+			games_board.a[x][y + 1].is_accessible_for_avatar() == false) {
+
+			return true;
+		}
+	}
+	else if (y == width) {
+		if (games_board.a[x + 1][y].is_accessible_for_avatar() == false &&
+			games_board.a[x - 1][y].is_accessible_for_avatar() == false &&
+			games_board.a[x][y - 1].is_accessible_for_avatar() == false) {
+
+			return true;
+		}
+	}
+	else if (x != 0 && x != height && y != 0 && y != width) {
+		if (games_board.a[x + 1][y].is_accessible_for_avatar() == false &&
+			games_board.a[x - 1][y].is_accessible_for_avatar() == false &&
+			games_board.a[x][y + 1].is_accessible_for_avatar() == false &&
+			games_board.a[x][y - 1].is_accessible_for_avatar() == false) {
+
+			return true;
+		}
+	}
+	return false;
+}
+
 int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 	system("cls");
 	cout << "Pause by pressing [p]" << endl << "Exit by pressing [esc]" << endl;
