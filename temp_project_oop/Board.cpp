@@ -153,22 +153,23 @@ void Board::reduce_npc(char v_or_w) {
 }
 
 void Board::make_npc_movement(Vampires* v, Werewolves* w) {
+    int num = x * y / 15;
     if (this->day_or_night == 1) {
-        for (int i = 0; i < this->number_of_vampires; i++) {
+        for (int i = 0; i < num; i++) {
             if (v[i].is_alive())
                 v[i].decide(*this);
         }
-        for (int i = 0; i < this->number_of_werewolves ; i++) {
+        for (int i = 0; i < num ; i++) {
             if (w[i].is_alive())
                 w[i].decide(*this);
         }
     }
     else {
-        for (int i = 0; i < this->number_of_vampires; i++) {
+        for (int i = 0; i < num; i++) {
             if (w[i].is_alive())
                 w[i].decide(*this);
         }
-        for (int i = 0; i < this->number_of_werewolves; i++) {
+        for (int i = 0; i < num; i++) {
             if (v[i].is_alive())
                 v[i].decide(*this);
         }

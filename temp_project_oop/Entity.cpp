@@ -217,11 +217,12 @@ Werewolves::Werewolves() {
 }
 
 void Werewolves::gen_move(Board * b) {
-	bool pos[4];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left
+	bool pos[5];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left
 	int i, max_x = b->getx(), max_y = b->gety();
 	srand(time(0));
 	int count = 0, j = 0, num, selection = -1;
 	for (i = 0; i < 4; i++) pos[i] = false;
+	pos[4] = true;
 	if (x == 0) {
 		if (y == 0) {
 			if (b->a[x + 1][y].is_accessible()) pos[1] = true;
@@ -316,11 +317,12 @@ Vampires::Vampires() {
 }
 
 void Vampires::gen_move(Board * b) {
-	bool pos[8];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left, 4 = right up, 5 = left up,
+	bool pos[9];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left, 4 = right up, 5 = left up,
 	int i, max_x = b->getx(), max_y = b->gety();	// 6 = right down, 7 = left down
 	srand(time(0));
 	int count = 0, j = 0, num, selection = -1;
 	for (i = 0; i < 8; i++) pos[i] = false;
+	pos[8] = true;
 	if (x == 0) {
 		if (y == 0) {
 			if (b->a[x + 1][y].is_accessible()) pos[1] = true;

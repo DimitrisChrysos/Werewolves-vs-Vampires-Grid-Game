@@ -12,11 +12,11 @@ using namespace std;
 
 
 void Npc::heal_attack_avoid(Board &b, int x, int y, char code, int &mov) {
-	char anti_team;
+	char at;
 	if (this->team == 'v')
-		anti_team = 'w';
+		at = 'w';
 	else if (this->team == 'w')
-		anti_team = 'v';
+		at = 'v';
 
 	Entity* temp;
 	temp = b.a[x][y].get_ent();
@@ -27,12 +27,6 @@ void Npc::heal_attack_avoid(Board &b, int x, int y, char code, int &mov) {
 	srand(time(0));
 
 	if (this->team == b.a[x][y].get_id()) {
-		Entity* temp;
-		temp = b.a[x][y].get_ent();
-
-		Npc* temp_npc;
-		temp_npc = (Npc*)temp;
-
 		int num = rand();
 
 		if (num % 2 == 0 && this->health_potions > 0 && temp_npc->health < 3) {
@@ -40,11 +34,11 @@ void Npc::heal_attack_avoid(Board &b, int x, int y, char code, int &mov) {
 			temp_npc->health++;
 		}
 	}
-	else if (anti_team == b.a[x][y].get_id()) {
+	else if (at == b.a[x][y].get_id()) {
 		if (this->strength >= temp_npc->strength) {
 			this->attack(temp_npc, this->strength - temp_npc->defense, b);
 		}
-		else if (temp_npc->strength > this->defense && !mov) {
+		else if (temp_npc->strength > this->strength && !mov) {
 			if (code == 'u') {
 				if (b.a[x - 1][y].is_accessible()) {
 					this->move(x - 1, y, b);
@@ -77,7 +71,6 @@ void Npc::decide(Board& b) {
 	int height = b.getx() - 1; //start from 0
 	int width = b.gety() - 1; //start from 0
 	int mov = 0;
-
 
 	if (this->x == 0) {
 		if (this->y == 0) {
