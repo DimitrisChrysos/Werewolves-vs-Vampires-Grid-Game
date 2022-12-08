@@ -131,7 +131,7 @@
     <ClCompile Include="Decide.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="game_input.cpp" />
-    <ClCompile Include="temp_project_main.cpp" />
+    <ClCompile Include="project_main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="temp_project_main.cpp">
+    <ClCompile Include="project_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">

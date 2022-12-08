@@ -67,12 +67,10 @@ int main() {
 		games_board.spawn_entities(player, v, w);
 
 		if (check_player_really_stuck(games_board, player) == true) {
-			cout << "hello\n";
 			games_board.delete_game(v, w);
 			continue;
 		}
 		else {
-			//cout << "hello\n";
 			system("pause");
 			game_input(games_board, player, v, w);
 			games_board.delete_game(v, w);
