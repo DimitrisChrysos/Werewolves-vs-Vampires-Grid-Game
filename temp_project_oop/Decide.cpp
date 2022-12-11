@@ -74,12 +74,12 @@ void Npc::decide(Board& b) {
 	int k = x;	// stores the starting x
 	int l = y;	// stores the starting y
 
-	if (this->x == 0) {
-		if (this->y == 0) {
+	if (k == 0) {
+		if (l == 0) {
 			this->heal_attack_avoid(b, k + 1, l, 'r', mov);
 			this->heal_attack_avoid(b, k, l + 1, 'd', mov);
 		}
-		else if (this->y == width) {
+		else if (l == width) {
 			this->heal_attack_avoid(b, k + 1, l, 'l', mov);
 			this->heal_attack_avoid(b, k, l - 1, 'd', mov);
 		}
@@ -89,12 +89,12 @@ void Npc::decide(Board& b) {
 			this->heal_attack_avoid(b, k, l - 1, 'r', mov);
 		}
 	}
-	else if (this->x == height) {
-		if (this->y == 0) {
+	else if (k == height) {
+		if (l == 0) {
 			this->heal_attack_avoid(b, k - 1, l, 'r', mov);
 			this->heal_attack_avoid(b, k, l + 1, 'u', mov);
 		}
-		else if (this->y == width) {
+		else if (l == width) {
 			this->heal_attack_avoid(b, k - 1, l, 'l', mov);
 			this->heal_attack_avoid(b, k, l - 1, 'u', mov);
 		}
@@ -104,17 +104,17 @@ void Npc::decide(Board& b) {
 			this->heal_attack_avoid(b, k, l - 1, 'r', mov);
 		}
 	}
-	else if (this->y == 0) {
+	else if (l == 0) {
 		this->heal_attack_avoid(b, k + 1, l, 'u', mov);
 		this->heal_attack_avoid(b, k - 1, l, 'd', mov);
 		this->heal_attack_avoid(b, k, l + 1, ' ', mov);
 	}
-	else if (this->y == width) {
+	else if (l == width) {
 		this->heal_attack_avoid(b, k + 1, l, 'u', mov);
 		this->heal_attack_avoid(b, k - 1, l, 'd', mov);
 		this->heal_attack_avoid(b, k, l - 1, ' ', mov);
 	}
-	else if (this->x != 0 && this->x != height && this->y != 0 && this->y != width) {
+	else if (k != 0 && k != height && l != 0 && l != width) {
 		this->heal_attack_avoid(b, k + 1, l, 'u', mov);
 		this->heal_attack_avoid(b, k - 1, l, 'd', mov);
 		this->heal_attack_avoid(b, k, l + 1, 'l', mov);
