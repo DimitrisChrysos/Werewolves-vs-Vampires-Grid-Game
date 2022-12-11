@@ -185,7 +185,7 @@ void Board::delete_game(Vampires * v, Werewolves * w) {
     int i;
     delete[] v;
     delete[] w;
-    for (i = 0; i < y; i++)
+    for (i = 0; i < x; i++)
         delete[] a[i];
     delete[] a;
 }
