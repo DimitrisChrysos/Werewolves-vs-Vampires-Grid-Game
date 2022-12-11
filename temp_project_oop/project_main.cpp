@@ -9,7 +9,7 @@
 using namespace std;
 
 int main() {
-	// insertion and exception handling
+	// insertion and exception handling for board size and team selection
 	cout << "The game has started!\n";
 	cout << "Please provide us with the board size...\n";
 	
@@ -22,11 +22,11 @@ int main() {
 		cout << "y: ";
 		cin >> y;
 		try {
-			if (x <= 1) {
+			if (x <= 3 || x > 100) {	// x must be higher than 3 for entities to spawn
 				throw (x);
 				x_or_y = x;
 			}
-			else if (y <= 1) {
+			else if (y <= 3 || y > 100) {	// y must be higher than 3 for entities to spawn
 				throw (y);
 				x_or_y = y;
 			}
@@ -66,13 +66,13 @@ int main() {
 		Werewolves* w = new Werewolves[wer];
 		games_board.spawn_entities(player, v, w);
 
-		if (check_player_really_stuck(games_board, player) == true) {
-			games_board.delete_game(v, w);
+		if (check_player_really_stuck(games_board, player) == true) {	// if player stuck delete the previous game
+			games_board.delete_game(v, w);								// and make a new one
 			continue;
 		}
-		else {
+		else {												// else if player not stuck start the game
 			system("pause");
-			game_input(games_board, player, v, w);
+			game_input(games_board, player, v, w);			// basically starts the game
 			games_board.delete_game(v, w);
 			temp = false;
 			continue;

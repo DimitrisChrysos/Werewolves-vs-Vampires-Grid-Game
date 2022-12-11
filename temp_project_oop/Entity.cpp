@@ -4,10 +4,10 @@
 #include "game.h"
 
 void Entity::move(int new_x, int new_y, Board &b) {
-	b.a[x][y].change_block_id(' ', NULL);
+	b.a[x][y].change_block_id(' ', NULL);	// empty the old block
 	x = new_x;
 	y = new_y;
-	b.a[x][y].change_block_id(team, this);
+	b.a[x][y].change_block_id(team, this);	// and update the new one
 }
 
 void Entity::change_coords(int a, int b) {
@@ -19,7 +19,7 @@ void Npc::gen_move(Board* b) {}
 
 void Npc::attack(Npc* n, int damage, Board &b) {
 	if (damage > 0) {
-		n->health -= damage; // Some other stuff need to be done here as well
+		n->health -= damage;
 		if (n->health <= 0) {
 			n->alive = false;
 			b.a[n->x][n->y].change_block_id(' ', NULL);
@@ -79,7 +79,7 @@ int Avatar::make_avatar_movement(Board &b, Avatar& player, std::string direction
 	int width = b.gety();
 	int height = b.getx();
 
-	// chech if avatar is stuck
+	// check if avatar is stuck
 	if (x == 0) {
 		if (y == 0 &&
 			b.a[x + 1][y].is_accessible_for_avatar() == false &&
@@ -217,13 +217,13 @@ Werewolves::Werewolves() {
 }
 
 void Werewolves::gen_move(Board * b) {
-	bool pos[5];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left
+	bool pos[5];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left, 4 = no move
 	int i, max_x = b->getx(), max_y = b->gety();
 	srand(time(0));
 	int count = 0, j = 0, num, selection = -1;
 	for (i = 0; i < 4; i++) pos[i] = false;
 	pos[4] = true;
-	if (x == 0) {
+	if (x == 0) {				// check which moves can be made
 		if (y == 0) {
 			if (b->a[x + 1][y].is_accessible()) pos[1] = true;
 			if (b->a[x][y + 1].is_accessible()) pos[2] = true;
@@ -271,21 +271,23 @@ void Werewolves::gen_move(Board * b) {
 			if (b->a[x][y - 1].is_accessible()) pos[3] = true;
 		}
 	}
+
+	// selects a random position of the ones available
 	for (i = 0; i < 4; i++) {
 		if (pos[i]) count++;
 	}
 	if (!count) return;
-	num = (rand() % count);
+	num = (rand() % count);		// select a random move
 	for (i = 0; i < 4; i++) {
 		if (pos[i]) {
 			if (j == num) {
-				selection = i;
+				selection = i;	// find it
 				break;
 			}
 			else j++;
 		}
 	}
-	switch (selection) {
+	switch (selection) {		// and execute it
 	case 0:
 		move(x - 1, y, *b);
 		break;
@@ -318,12 +320,12 @@ Vampires::Vampires() {
 
 void Vampires::gen_move(Board * b) {
 	bool pos[9];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left, 4 = right up, 5 = left up,
-	int i, max_x = b->getx(), max_y = b->gety();	// 6 = right down, 7 = left down
+	int i, max_x = b->getx(), max_y = b->gety();	// 6 = right down, 7 = left down, 8 = no move
 	srand(time(0));
 	int count = 0, j = 0, num, selection = -1;
 	for (i = 0; i < 8; i++) pos[i] = false;
 	pos[8] = true;
-	if (x == 0) {
+	if (x == 0) {				// check which moves can be made
 		if (y == 0) {
 			if (b->a[x + 1][y].is_accessible()) pos[1] = true;
 			if (b->a[x][y + 1].is_accessible()) pos[2] = true;
@@ -387,21 +389,23 @@ void Vampires::gen_move(Board * b) {
 			if (b->a[x + 1][y - 1].is_accessible()) pos[7] = true;
 		}
 	}
+
+	// selects a random position of the ones available
 	for (i = 0; i < 8; i++) {
 		if (pos[i]) count++;
 	}
 	if (!count) return;
-	num = (rand() % count);
+	num = (rand() % count);			// select a random move
 	for (i = 0; i < 8; i++) {
 		if (pos[i]) {
 			if (j == num) {
-				selection = i;
+				selection = i;		// find it
 				break;
 			}
 			else j++;
 		}
 	}
-	switch (selection) {
+	switch (selection) {			// and execute it
 	case 0:
 		move(x - 1, y, *b);
 		break;

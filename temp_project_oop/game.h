@@ -9,8 +9,8 @@ protected:
 	char team;
 	int x, y;
 public:
-	void move(int new_x, int new_y, Board &b);
-    void change_coords(int a, int b);
+	void move(int new_x, int new_y, Board &b);  // move an entity
+    void change_coords(int a, int b);   // change the old coords to the new ones
 };
 
 class Npc : public Entity {
@@ -21,13 +21,13 @@ protected:
 	int defense;
 	bool alive;
 public:
-    void heal_attack_avoid(Board& b, int x, int y, char code, int &mov);
-    void decide(Board &b);
-    void attack(Npc * n, int damage, Board &b);
-    bool is_alive();
-    virtual void gen_move(Board* b);
-    void heal();
-    void strength_boost();
+    void heal_attack_avoid(Board& b, int x, int y, char code, int &mov);    // decides whether to heal teamate, attack enemy or avoid the enemy
+    void decide(Board &b);  // calls heal_attack_avoid() for the specific location of the npc
+    void attack(Npc * n, int damage, Board &b); // attack the enemy
+    bool is_alive();    // checks if the npc is alive
+    virtual void gen_move(Board* b);    // generates a move for the npc (works with overloading)
+    void heal();    // fully heals an npc
+    void strength_boost();  // is used to make sure the last npc spawned of each team has the max strength to ensure at least one attack
 };
 
 class Avatar : public Entity {
@@ -35,28 +35,26 @@ class Avatar : public Entity {
 public:
 	Avatar(char t);
 	~Avatar();
-    int get_x();
-    int get_y();
-    int get_magic_potion();
-	char get_team();
-    void reduce_potions();
-    int make_avatar_movement(Board &b, Avatar& player, std::string direction);    //direction: "up", "down", "right", "left"
+    int get_x();    // returns Avatar's x
+    int get_y();    // returns Avatar's y
+    int get_magic_potion(); // returns the number of magic potions left
+	char get_team();    // returns the team the Avatar supports
+    void reduce_potions();  // reduces the Avatars potions by one
+    int make_avatar_movement(Board &b, Avatar& player, std::string direction);  // if movement is avaialable, moves the Avatar using the user input {direction: "up", "down", "right", "left"}
 };
 
 class Vampires : public Npc {
-	//movement functs
 public:
 	Vampires();
     ~Vampires();
-    void gen_move(Board * b);
+    void gen_move(Board * b);   // generates a move for the Vampire
 };
 
 class Werewolves : public Npc {
-	//movement functs
 public:
 	Werewolves();
     ~Werewolves();
-    void gen_move(Board * b);
+    void gen_move(Board * b);   // generates a move for the Werewolf
 };
 
 
@@ -70,17 +68,17 @@ public:
     Block** a;
     Board(int k, int l, int number_of_wer, int number_of_vam);
     ~Board();
-    int getx();
-    int gety();
-    void spawn_entities(Avatar &player, Vampires * v, Werewolves * w);
-    void print();
-    void change_time();
-    int return_time();
-    int get_number_of_wer();
-    int get_number_of_vam();
-    void reduce_npc(char v_or_w);  //input v or w and it reduces number_of_vampires or number_of_werewolves by 1
-    void make_npc_movement(Vampires* v, Werewolves* w);
-    void delete_game(Vampires * v, Werewolves * w);
+    int getx(); // returns boards height
+    int gety(); // returns boards width
+    void spawn_entities(Avatar &player, Vampires * v, Werewolves * w);  // spawns the entities at the board
+    void print();   // prints the board (and the time)
+    void change_time(); // changes the time
+    int return_time();  // returns the time
+    int get_number_of_wer();    // returns the number of werewolves left
+    int get_number_of_vam();    // returns the number of vampires left
+    void reduce_npc(char v_or_w);  // input v or w and it reduces number_of_vampires or number_of_werewolves by 1
+    void make_npc_movement(Vampires* v, Werewolves* w); // generates a move for all the vampires and werewolves
+    void delete_game(Vampires * v, Werewolves * w); // deletes the game
 };
 
 class Block {
@@ -90,10 +88,10 @@ private:
     Entity* content;
     friend class Board;
 public:
-    void init(char id);
-    bool is_accessible();  // return true or false
-    bool is_accessible_for_avatar();
-    void change_block_id(char id, Entity* cnt);
-    Entity* get_ent();
-    char get_id();
+    void init(char id); // initializes the block according to the id we give it
+    bool is_accessible();  // returns if block is accessible for all the entities
+    bool is_accessible_for_avatar();    // returnes if block is accessible for Avatar
+    void change_block_id(char id, Entity* cnt); // changes the identity of the block
+    Entity* get_ent();  // returns the entity on the block
+    char get_id();  // returns the identity(entity team which is on) the block
 };

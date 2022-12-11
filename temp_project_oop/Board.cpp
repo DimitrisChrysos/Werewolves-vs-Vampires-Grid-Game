@@ -10,19 +10,19 @@ using namespace std;
 Board::Board(int k, int l, int number_of_wer, int number_of_vam) : x(k), y(l) {
     int i, j, num, pot = 0;
     char sym;
-    a = new Block * [k];
+    a = new Block * [k];            // allocate the memory
     srand(time(0));
     for (i = 0; i < k; i++) {
         a[i] = new Block[l];
         for (j = 0; j < l; j++) {
-            if (i == k - 1 && j == l - 1 && pot == 0) {
-                a[i][j].init('+');
+            if (i == k - 1 && j == l - 1 && pot == 0) { // if you are in the last block and no potion has been generated
+                a[i][j].init('+');      // generate it here
                 continue;
             }
             num = 1 + (rand() % 100);
-            if (num >= 1 && num <= 8) sym = '*';
-            else if (num <= 16) sym = '~';
-            else if (num <= 21 && pot == 0) {
+            if (num >= 1 && num <= 8) sym = '*';    // this block is a tree with a chance of 8%
+            else if (num <= 16) sym = '~';          // this block is water with a chance of 8%
+            else if (num <= 21 && pot == 0) {       // this block is a potion with a chance of 5%
                 pot++;
                 sym = '+';
             }
@@ -52,13 +52,15 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
     srand(time(0));
     int wer, vam;
     wer = vam = x * y / 15;
+    
+    // spawns werewolves 
     for (int i = 0; i < wer; i++) {
         int temp = true;
         while (temp) {
             int random_x = (rand() % x);    // x depicts height
             int random_y = (rand() % y);    // y depicts width
-            if (a[random_x][random_y].is_accessible()) {
-                w[i].change_coords(random_x, random_y);
+            if (a[random_x][random_y].is_accessible()) {    // if this random block is empty
+                w[i].change_coords(random_x, random_y);     // spawn the entity
                 a[random_x][random_y].change_block_id('w', &w[i]);
                 a[random_x][random_y].accessible = false;
                 temp = false;
@@ -67,6 +69,7 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
     }
     w[wer - 1].strength_boost();            // Make at least one werewolf have 3 strength
 
+    // spawns vampires
     for (int i = 0; i < vam; i++) {
         int temp = true;
         while (temp) {
@@ -82,6 +85,7 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
     }
     v[vam - 1].strength_boost();            // Make at least one vampire have 3 strength
 
+    // spawns the Avatar
     int temp = true;
     while (temp) {
         int random_x = (rand() % x);    // x depicts height
@@ -96,6 +100,7 @@ void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
 }
 
 void Board::print() {
+    // print board
     int i, j;
     cout << endl;
     for (j = 0; j < 2 * y + 1; j++) {

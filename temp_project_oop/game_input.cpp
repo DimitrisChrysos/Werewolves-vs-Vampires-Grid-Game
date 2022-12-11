@@ -8,10 +8,10 @@
 using namespace std;
 
 bool check_player_really_stuck(Board& games_board, Avatar& player) {
-	int x = player.get_x();
+	int x = player.get_x();	//player coords
 	int y = player.get_y();
-	int height = games_board.getx() - 1; //start from 0
-	int width = games_board.gety() - 1; //start from 0
+	int height = games_board.getx() - 1; //board measurements, (both of the measurements {width, height} start from 0)
+	int width = games_board.gety() - 1;
 	if (x == 0) {
 		if (y == 0) {
 			if (games_board.a[x + 1][y].is_accessible_for_avatar() == false &&
@@ -89,6 +89,8 @@ bool check_player_really_stuck(Board& games_board, Avatar& player) {
 }
 
 int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
+
+	//starts the game
 	system("cls");
 	cout << "Pause by pressing [p]" << endl << "Exit by pressing [esc]" << endl;
 	cout << "Move with the arrows or with [w]-[a]-[s]-[d]" << endl;
@@ -111,8 +113,9 @@ int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 	system("cls");
 	games_board.print();
 
-	//player movement
+	// player movement counter to change the time
 	int move_counter = 0;
+	
 	bool exit = false;
 	while (exit == false) {
 
@@ -152,7 +155,7 @@ int game_input(Board &games_board, Avatar &player, Vampires* v, Werewolves* w) {
 			move_counter = 0;
 		}
 
-		// game input
+		// user input
 		this_thread::sleep_for(150ms);
 		if (GetKeyState(0x57) & 0x8000 || GetKeyState(VK_UP) & 0x8000) {	// to move up
 
