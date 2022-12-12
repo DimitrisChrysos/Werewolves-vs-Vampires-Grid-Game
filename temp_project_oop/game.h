@@ -25,7 +25,7 @@ public:
     void decide(Board &b);  // calls heal_attack_avoid() for the specific location of the npc
     void attack(Npc * n, int damage, Board &b); // attack the enemy
     bool is_alive();    // checks if the npc is alive
-    virtual void gen_move(Board* b);    // generates a move for the npc (works with overloading)
+    virtual void gen_move(Board* b);    // generates a move for the npc (works with overriding)
     void heal();    // fully heals an npc
     void strength_boost();  // is used to make sure the last npc spawned of each team has the max strength to ensure at least one attack
 };
