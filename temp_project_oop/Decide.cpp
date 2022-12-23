@@ -24,8 +24,6 @@ void Npc::heal_attack_avoid(Board &b, int x, int y, char code, int &mov) {
 	Npc* temp_npc;
 	temp_npc = (Npc*)temp;
 
-	srand(time(0));
-
 	if (this->team == b.a[x][y].get_id() && this != temp_npc) {		//  if entity is a friendly npc
 		int num = rand();
 

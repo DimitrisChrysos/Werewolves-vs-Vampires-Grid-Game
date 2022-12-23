@@ -11,7 +11,6 @@ Board::Board(int k, int l, int number_of_wer, int number_of_vam) : x(k), y(l) {
     int i, j, num, pot = 0;
     char sym;
     a = new Block * [k];            // allocate the memory
-    srand(time(0));
     for (i = 0; i < k; i++) {
         a[i] = new Block[l];
         for (j = 0; j < l; j++) {
@@ -49,7 +48,6 @@ int Board::gety() {
 }
 
 void Board::spawn_entities(Avatar &player, Vampires * v, Werewolves * w) {
-    srand(time(0));
     int wer, vam;
     wer = vam = x * y / 15;
     

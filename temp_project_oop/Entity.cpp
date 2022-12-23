@@ -206,7 +206,6 @@ int Avatar::make_avatar_movement(Board &b, Avatar& player, std::string direction
 }
 
 Werewolves::Werewolves() {
-	srand(time(0));
 	health = 3;
 	strength = 1 + (rand() % 3);		// strength is randomly generated from 1-3
 	defense = 1 + (rand() % 2);			// defense is randomly generated from 1-2
@@ -219,7 +218,6 @@ Werewolves::Werewolves() {
 void Werewolves::gen_move(Board * b) {
 	bool pos[5];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left, 4 = no move
 	int i, max_x = b->getx(), max_y = b->gety();
-	srand(time(0));
 	int count = 0, j = 0, num, selection = -1;
 	for (i = 0; i < 4; i++) pos[i] = false;
 	pos[4] = true;
@@ -308,7 +306,6 @@ void Werewolves::gen_move(Board * b) {
 Werewolves::~Werewolves() {}
 
 Vampires::Vampires() {
-	srand(time(0));
 	health = 3;
 	strength = 1 + (rand() % 3);		// strength is randomly generated from 1-3
 	defense = 1 + (rand() % 2);			// defense is randomly generated from 1-2
@@ -321,7 +318,6 @@ Vampires::Vampires() {
 void Vampires::gen_move(Board * b) {
 	bool pos[9];								// Positions are: 0 = up, 1 = down, 2 = right, 3 = left, 4 = right up, 5 = left up,
 	int i, max_x = b->getx(), max_y = b->gety();	// 6 = right down, 7 = left down, 8 = no move
-	srand(time(0));
 	int count = 0, j = 0, num, selection = -1;
 	for (i = 0; i < 8; i++) pos[i] = false;
 	pos[8] = true;

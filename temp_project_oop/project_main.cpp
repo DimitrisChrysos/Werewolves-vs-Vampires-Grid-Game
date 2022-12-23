@@ -5,6 +5,7 @@
 #include <string>
 #include "game.h"
 #include "game_input.h"
+#include <time.h>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ int main() {
 	// insertion and exception handling for board size and team selection
 	cout << "The game has started!\n";
 	cout << "Please provide us with the board size...\n";
-	
+	srand(time(0));						// Set the seed for rand
 	int x, y;
 	bool temp = true;
 	int x_or_y = 0;
