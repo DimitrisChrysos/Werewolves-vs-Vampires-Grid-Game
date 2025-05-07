@@ -1,4 +1,4 @@
-# 🧛🧟 OOP Grid-Based Strategy Game in C++
+# 🧛🌕🐺 OOP Grid-Based Strategy Game in C++
 
 This project is a turn-based strategy game implemented in C++ using object-oriented programming. Players control an Avatar navigating a grid filled with NPCs, werewolves, vampires, trees, water, and magic potions. The world evolves turn by turn based on a day-night cycle, with each entity type exhibiting unique movement and interaction logic.
 
