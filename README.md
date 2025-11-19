@@ -50,4 +50,4 @@ Watch a demonstration on YouTube:
 
 ---
 
-This project was developed as part of an Object-Oriented Programming course to practice class design, grid logic, and basic game architecture in C++.
+This project was developed as part of the **Object-Oriented Programming** course to practice class design, grid logic, and basic game architecture in C++.
